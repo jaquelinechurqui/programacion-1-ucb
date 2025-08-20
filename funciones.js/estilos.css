@@ -1,10 +1,10 @@
 :root {
-  --color-primario: #1e3a8a;
-  --color-secundario: #40afaf;
-  --color-fondo:#E6E6FA;
+  --color-primario: #055465;
+  --color-secundario: #71bfa0;
+  --color-fondo:#c3dedb;
   --color-blanco: #ffffff;
   --color-texto: #333;
-  --color-acento: #dbaac8;
+  --color-acento: #cb90b4;
   --fuente: 'Segoe UI', 'Roboto', sans-serif;
 }
 
@@ -131,11 +131,33 @@ button:hover {
 
 
 footer {
-  background-color: #1e3a8a; /* azul oscuro o el color principal que estés usando */
-  color: #f4f9fa; /* amarillo suave */
+  background-color: #c2ebdb; /* azul oscuro o el color principal que estés usando */
+  color: #1a1b1b; /* amarillo suave */
   text-align: center;
   padding: 0.5rem;
   font-size: 0.7rem; /* súper pequeñita como querés */
   font-style: serif;
   letter-spacing: 0.5px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #c3dedb; /* Lavanda-verde base */
+  background-image: url(fondo-matematico.jpeg.png); /* Tu imagen generada */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+ 
+} 
+/* Capa negra semitransparente encima del fondo */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4); /* transparencia */
+  z-index: -1;
 }

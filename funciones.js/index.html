@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Calculadora Smart</title>
+  <link rel="stylesheet" href="estilos.css" />
+</head>
+<body>
+  <header>🔢 Calculadora Smart 💡</header>
+
+  <nav>
+    <button onclick="mostrar('seccion1')">Decimal → Binario</button>
+    <button onclick="mostrar('seccion2')">Suma Binaria</button>
+    <button onclick="mostrar('seccion3')">Hex → Binario</button>
+    <button onclick="mostrar('seccion4')">Binario → Hex</button>
+    <button onclick="mostrar('seccion5')">Operaciones Binarias</button>
+    <button onclick="mostrar('seccion6')">Tabla Multiplicar</button>
+    <button onclick="mostrar('seccion7')">Sumas Matemáticas</button>
+  </nav>
+
+  <div id="seccion1" class="seccion">
+    <h2>Decimal a Binario</h2>
+    <input type="number" id="decimal" placeholder="Número decimal" />
+    <button onclick="convertir()">Convertir</button>
+    <div class="resultado" id="resultadoBinario"></div>
+  </div>
+
+  <div id="seccion2" class="seccion">
+    <h2>Suma de Binarios</h2>
+    <input type="text" id="bin1" placeholder="Binario 1" />
+    <input type="text" id="bin2" placeholder="Binario 2" />
+    <button onclick="sumarBinarios()">Sumar</button>
+    <div class="resultado" id="resultadoSuma"></div>
+  </div>
+
+  <div id="seccion3" class="seccion">
+    <h2>Hexadecimal a Binario</h2>
+    <input type="text" id="hex" placeholder="Hexadecimal" />
+    <button onclick="hexABinario()">Convertir</button>
+    <div class="resultado" id="resultadoHexBin"></div>
+  </div>
+
+  <div id="seccion4" class="seccion">
+    <h2>Binario a Hexadecimal</h2>
+    <input type="text" id="binHex" placeholder="Binario" />
+    <button onclick="binarioAHex()">Convertir</button>
+    <div class="resultado" id="resultadoBinHex"></div>
+  </div>
+
+  <div id="seccion5" class="seccion">
+    <h2>Operaciones Binarias</h2>
+    <input type="text" id="binOp1" placeholder="Binario 1" />
+    <input type="text" id="binOp2" placeholder="Binario 2" />
+    <select id="operacion">
+      <option value="+">+</option>
+      <option value="-">−</option>
+      <option value="*">×</option>
+      <option value="/">÷</option>
+    </select>
+    <button onclick="operarBinarios()">Operar</button>
+    <div class="resultado" id="resultadoOperacion"></div>
+  </div>
+
+  <div id="seccion6" class="seccion">
+    <h2>Tabla de Multiplicar</h2>
+    <input type="number" id="tablaNum" placeholder="Número" />
+    <button onclick="tablaMultiplicar()">Generar</button>
+    <textarea id="resultadoTabla" rows="10" readonly></textarea>
+  </div>
+
+  <div id="seccion7" class="seccion">
+    <h2>Suma de Pares</h2>
+    <input type="number" id="limitePares" placeholder="Hasta qué número" />
+    <button onclick="sumaPares()">Sumar</button>
+    <div class="resultado" id="resultadoPares"></div>
+
+    <h2>Suma de Primos</h2>
+    <input type="number" id="limitePrimos" placeholder="Hasta qué número" />
+    <button onclick="sumaPrimos()">Sumar</button>
+    <div class="resultado" id="resultadoPrimos"></div>
+  </div>
+
+  <!-- Mostrar solo la primera sección al cargar -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      mostrar("seccion1");
+    });
+  </script>
+
+  <!-- Conexión al archivo de funciones -->
+  <script src="ejercicios.js"></script>
+  <footer>
+  <p>Primer proyecto - creado por @Jaqueline</p>
+</footer>
+
+</body>
+</html>
+
+

@@ -1,21 +1,37 @@
 function mostrar(id) {
-  const secciones = document.querySelectorAll(".seccion");
-  secciones.forEach(sec => sec.style.display = "none");
+  document.querySelectorAll(".seccion").forEach(sec => sec.style.display = "none");
   document.getElementById(id).style.display = "block";
 }
 
+// Ejercicio 1: Conversión decimal a base elegida
 function convertir() {
-  const decimal = parseInt(document.getElementById("decimal").value);
-  document.getElementById("resultadoBinario").textContent = decimal.toString(2);
+  const decimal = document.getElementById("decimal").value;
+  const base = document.getElementById("base").value;
+
+  if (decimal === "" || base === "") {
+    document.getElementById("resultadoBinario").textContent = "Por favor, ingresa el número y la base.";
+    return;
+  }
+
+  const resultado = parseInt(decimal).toString(parseInt(base)).toUpperCase();
+  document.getElementById("resultadoBinario").textContent = `Resultado en base ${base}: ${resultado}`;
 }
 
+// Ejercicio 2: Suma binaria → resultado en decimal
 function sumarBinarios() {
   const bin1 = document.getElementById("bin1").value;
   const bin2 = document.getElementById("bin2").value;
+
+  if (!/^[01]+$/.test(bin1) || !/^[01]+$/.test(bin2)) {
+    document.getElementById("resultadoSuma").textContent = "Ingresa solo números binarios válidos.";
+    return;
+  }
+
   const suma = parseInt(bin1, 2) + parseInt(bin2, 2);
-  document.getElementById("resultadoSuma").textContent = suma.toString(2);
+  document.getElementById("resultadoSuma").textContent = `Resultado en decimal: ${suma}`;
 }
 
+// Las demás funciones siguen igual
 function hexABinario() {
   const hex = document.getElementById("hex").value;
   const bin = parseInt(hex, 16).toString(2);
@@ -76,6 +92,3 @@ function esPrimo(n) {
   }
   return n > 1;
 }
-
-
-

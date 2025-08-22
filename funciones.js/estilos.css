@@ -1,10 +1,10 @@
 :root {
   --color-primario: #055465;
   --color-secundario: #71bfa0;
-  --color-fondo:#c3dedb;
+  --color-fondo: #c3dedb;
   --color-blanco: #ffffff;
   --color-texto: #333;
-  --color-acento: #cb90b4;
+  --color-acento: #f5f4f4;
   --fuente: 'Segoe UI', 'Roboto', sans-serif;
 }
 
@@ -13,9 +13,22 @@ body {
   font-family: var(--fuente);
   background-color: var(--color-fondo);
   color: var(--color-texto);
+  background-image: url(fondo-matematico.jpeg.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-/* Encabezado */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4);
+  z-index: -1;
+}
+
 header {
   background-color: var(--color-primario);
   color: var(--color-blanco);
@@ -30,16 +43,6 @@ header {
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-header .icono {
-  background-color: var(--color-blanco);
-  color: var(--color-primario);
-  font-weight: bold;
-  padding: 0.5rem;
-  border-radius: 8px;
-  font-size: 1.2rem;
-}
-
-/* Menú de navegación */
 nav {
   background-color: var(--color-blanco);
   padding: 1rem;
@@ -66,7 +69,6 @@ nav button:hover {
   transform: scale(1.05);
 }
 
-/* Secciones */
 .seccion {
   display: none;
   max-width: 600px;
@@ -129,35 +131,41 @@ button:hover {
   text-align: center;
 }
 
-
 footer {
-  background-color: #c2ebdb; /* azul oscuro o el color principal que estés usando */
-  color: #1a1b1b; /* amarillo suave */
+  background-color: var(--color-fondo);
+  color: var(--color-negro);
   text-align: center;
   padding: 0.5rem;
-  font-size: 0.7rem; /* súper pequeñita como querés */
-  font-style: serif;
+  font-size: 0.6rem;
+  font-style: italic;
   letter-spacing: 0.5px;
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #c3dedb; /* Lavanda-verde base */
-  background-image: url(fondo-matematico.jpeg.png); /* Tu imagen generada */
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
- 
-} 
-/* Capa negra semitransparente encima del fondo */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.4); /* transparencia */
-  z-index: -1;
+/* Responsive para móviles */
+@media screen and (max-width: 600px) {
+  nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .seccion {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+
+  input, select, textarea, button {
+    font-size: 1rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+}
+
+/* Estilo para etiquetas nuevas */
+label {
+  font-size: 0.9rem;
+  display: block;
+  margin-top: 1rem;
+  color: var(--color-primario);
 }

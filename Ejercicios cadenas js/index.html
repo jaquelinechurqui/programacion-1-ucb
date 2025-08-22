@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Analizador de Texto</title>
+  <link rel="stylesheet" href="estilos.css" />
+  <script src="cadenas.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>🔍 Analizador de Texto</h1>
+  </header>
+
+  <main>
+    <input type="text" id="textoInput" placeholder="Escribe tu texto aquí..." />
+
+    <div class="contenedor-horizontal">
+      <section class="bloque">
+        <button onclick="mostrarVocales()">Contar Vocales</button>
+        <div id="resultadoVocales" class="resultado">🔠 Vocales: —</div>
+      </section>
+
+      <section class="bloque">
+        <button onclick="mostrarPalabras()">Contar Palabras</button>
+        <div id="resultadoPalabras" class="resultado">📝 Palabras: —</div>
+      </section>
+
+      <section class="bloque">
+        <button onclick="mostrarCaracteres()">Contar Caracteres</button>
+        <div id="resultadoCaracteres" class="resultado">🔢 Caracteres: —</div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 Jaqueline | Proyecto Web Creativo 💡
+  </footer>
+
+  <script>
+    function mostrarVocales() {
+      const texto = document.getElementById("textoInput").value;
+      const resultado = ContarVocales(texto);
+      document.getElementById("resultadoVocales").textContent = `🔠 Vocales: ${resultado}`;
+    }
+
+    function mostrarPalabras() {
+      const texto = document.getElementById("textoInput").value;
+      const resultado = ContarPalabras(texto);
+      document.getElementById("resultadoPalabras").textContent = `📝 Palabras: ${resultado}`;
+    }
+
+    function mostrarCaracteres() {
+      const texto = document.getElementById("textoInput").value;
+      const resultado = ContarCaracteres(texto);
+      document.getElementById("resultadoCaracteres").textContent = `🔢 Caracteres: ${resultado}`;
+    }
+  </script>
+</body>
+</html>

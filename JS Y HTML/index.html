@@ -2,19 +2,35 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>✨ Bienvenida Futurista ✨</title>
+  <title> PROGRAMA ALEATORIO🚀</title>
   <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
-  <div class="contenedor">
-    <h2>¿Cuál es tu nombre?</h2>
-    <input type="text" id="nombre" placeholder="Escribe tu nombre aquí" />
-    <button onclick="mostrarNombre()">Mostrar</button>
-    <button onclick="InsertarLista()">Insertar lista</button>
-    
-    <div id="resultado" class="lista-dinamica"></div>
+  <header>
+    <h1>PROGRAMA ALEATORIO🚀</h1>
+    <div class="scanner-line"></div>
+  </header>
 
-  </div>
+  <main class="contenedor">
+    <section class="bloque bloque-nombre">
+      <h2>¿Cuál es tu nombre?</h2>
+      <input type="text" id="nombre" placeholder="Escribe tu nombre aquí" />
+      <button onclick="mostrarNombre()">Mostrar</button>
+      <div id="saludo" class="saludo-texto"></div>
+    </section>
+
+    <section class="bloque bloque-lista">
+      <h2>Lista Dinámica</h2>
+      <button onclick="InsertarLista()">Insertar número aleatorio</button>
+
+      <div class="eliminar-box">
+        <input type="number" id="eliminarValor" placeholder="Número a eliminar" />
+        <button onclick="EliminarLista()">Eliminar</button>
+      </div>
+
+      <div id="resultado" class="lista-dinamica"></div>
+    </section>
+  </main>
 
   <footer>
     <div class="scanner-line"></div>

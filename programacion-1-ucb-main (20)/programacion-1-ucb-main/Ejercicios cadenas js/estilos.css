@@ -1,0 +1,116 @@
+:root {
+  --color-primario: #ff00c8;
+  --color-secundario: #00ffe0;
+  --color-fondo: #0d0d0d;
+  --color-texto: #e0e0e0;
+  --neon-pink: #ff00c8;
+  --neon-cyan: #00ffe0;
+  --sombra-neon: 0 0 20px rgba(255, 0, 200, 0.7), 0 0 30px rgba(0, 255, 224, 0.5);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.header-futurista, .footer-futurista {
+  background: linear-gradient(90deg, #1a1a1a, #0d0d0d);
+  padding: 2rem 1rem;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.glow-border {
+  border: 2px solid var(--neon-cyan);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: var(--sombra-neon);
+  background: rgba(20, 20, 20, 0.8);
+  backdrop-filter: blur(6px);
+}
+
+main {
+  padding: 2rem;
+  max-width: 1000px;
+  margin: auto;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  background-color: #1a1a1a;
+  color: var(--color-texto);
+  box-shadow: 0 0 15px var(--neon-pink);
+}
+
+input[type="text"]:focus {
+  outline: none;
+  box-shadow: 0 0 25px var(--neon-cyan);
+}
+
+.contenedor-horizontal {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.bloque {
+  flex: 1;
+  min-width: 280px;
+  background-color: #1a1a1a;
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 0 25px var(--neon-pink);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bloque:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 35px var(--neon-cyan);
+}
+
+button {
+  background: linear-gradient(135deg, var(--neon-pink), var(--neon-cyan));
+  color: #0d0d0d;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 15px var(--neon-pink);
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px var(--neon-cyan);
+}
+
+.resultado {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--neon-cyan);
+  background-color: #0d0d0d;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 0 20px var(--neon-cyan);
+  transition: all 0.3s ease;
+}

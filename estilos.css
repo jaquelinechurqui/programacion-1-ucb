@@ -6,13 +6,13 @@ body {
   overflow-x: hidden;
 }
 
-/* HEADER Y FOOTER CON RAYOS AZULES */
+/* HEADER Y FOOTER CON RAYOS */
 header, footer {
   text-align: center;
   padding: 20px;
   background-color: #000;
-  border-bottom: 2px solid #00cfff;
-  box-shadow: 0 0 25px #00cfff;
+  border-bottom: 2px solid #ff00cc;
+  box-shadow: 0 0 25px #ff00cc;
   position: relative;
 }
 
@@ -23,9 +23,9 @@ header::before, footer::before {
   left: -50%;
   width: 200%;
   height: 100%;
-  background: linear-gradient(120deg, transparent, #00cfff, transparent);
+  background: linear-gradient(120deg, transparent, #ff00cc, transparent);
   animation: rayos 2s infinite linear;
-  opacity: 0.2;
+  opacity: 0.3;
   z-index: 0;
 }
 
@@ -35,7 +35,7 @@ header::before, footer::before {
 }
 
 h1 {
-  color: #00cfff;
+  color: #ff00cc;
   font-size: 2rem;
   position: relative;
   z-index: 1;
@@ -52,33 +52,33 @@ h1 {
   margin: auto;
 }
 
-/* BLOQUES CON DIFUMINACIÓN Y SOMBRA AZUL */
+/* BLOQUES CON DIFUMINACIÓN Y SOMBRA NEÓN */
 .bloque {
   background: linear-gradient(145deg, #1e1e2f, #0a0a0a);
-  border: 1px solid #00cfff;
+  border: 1px solid #ff00cc;
   border-radius: 15px;
   padding: 20px;
   width: 100%;
   max-width: 500px;
-  box-shadow: 0 0 25px rgba(0, 207, 255, 0.4), 0 0 15px rgba(0, 240, 255, 0.3);
+  box-shadow: 0 0 25px rgba(255, 0, 204, 0.4), 0 0 15px rgba(0, 240, 255, 0.3);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .bloque:hover {
   transform: scale(1.02);
-  box-shadow: 0 0 35px #00cfff, 0 0 20px #00f0ff;
+  box-shadow: 0 0 35px #ff00cc, 0 0 20px #00f0ff;
 }
 
-/* TÍTULOS BLANCOS CON SOMBRA AZUL SUAVE */
+/* TÍTULOS BLANCOS CON SOMBRA SUAVE */
 .bloque h2 {
   font-size: 1.6rem;
   font-weight: 700;
   color: #ffffff;
   text-align: center;
-  text-shadow: 0 0 8px #00cfff, 0 0 12px #00f0ff;
+  text-shadow: 0 0 8px #ff00cc, 0 0 12px #00f0ff;
 }
 
-/* INPUTS CON SOMBRA NEÓN AZUL */
+/* INPUTS CON SOMBRA NEÓN */
 input {
   width: 100%;
   padding: 10px;
@@ -90,11 +90,11 @@ input {
   box-shadow: 0 0 10px #00f0ff;
 }
 
-/* BOTONES CON DEGRADADO AZUL-AQUA-CELESTE */
+/* BOTONES CON COLORES FUSCIA, CELESTE Y AQUA */
 button {
   padding: 10px 20px;
   margin: 5px 0;
-  background: linear-gradient(90deg, #00cfff, #00f0ff, #00eaff);
+  background: linear-gradient(90deg, #ff00cc, #00f0ff, #00cfff);
   background-size: 200% 200%;
   animation: degradadoBoton 4s ease infinite;
   color: #000;
@@ -102,7 +102,7 @@ button {
   border-radius: 8px;
   font-weight: bold;
   cursor: pointer;
-  box-shadow: 0 0 15px #00cfff;
+  box-shadow: 0 0 15px #ff00cc;
   transition: transform 0.3s ease;
 }
 
@@ -119,11 +119,11 @@ button:hover {
 /* BOTONES DE LISTA DINÁMICA */
 .boton-lista {
   padding: 10px;
-  background: linear-gradient(90deg, #00cfff, #00f0ff);
+  background: linear-gradient(90deg, #ff00cc, #00f0ff);
   color: #000;
   border-radius: 8px;
   margin: 5px;
-  box-shadow: 0 0 10px #00cfff;
+  box-shadow: 0 0 10px #ff00cc;
 }
 
 /* TABLA DE ESTUDIANTES */
@@ -133,26 +133,26 @@ table {
   margin-top: 10px;
   background-color: #0a0a0a;
   color: #f0f8ff;
-  box-shadow: 0 0 10px #00cfff;
+  box-shadow: 0 0 10px #ff00cc;
 }
 
 th, td {
   padding: 10px;
-  border: 1px solid #00cfff;
+  border: 1px solid #ff00cc;
   text-align: center;
 }
 
 th {
   background-color: #1a1a2e;
-  color: #00cfff;
+  color: #ff00cc;
 }
 
 /* FOOTER FINAL */
 footer {
   margin-top: 50px;
   padding: 20px;
-  border-top: 2px solid #00cfff;
-  box-shadow: 0 -5px 20px #00cfff;
-  color: #00cfff;
+  border-top: 2px solid #ff00cc;
+  box-shadow: 0 -5px 20px #ff00cc;
+  color: #ff00cc;
   position: relative;
 }

@@ -1,179 +1,158 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #000000, #001f2f, #00ffff);
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
+  background: linear-gradient(180deg, #0a0a0a, #1a1a2e);
+  color: #e0f7ff;
   overflow-x: hidden;
 }
 
-header {
-  width: 100%;
+/* HEADER Y FOOTER CON RAYOS AZULES */
+header, footer {
   text-align: center;
-  padding: 20px 0;
-  background: rgba(0, 0, 0, 0.8);
-  box-shadow: 0 2px 20px #fbfcfc;
-  border-bottom: 2px solid #00ffff;
-}
-
-header h1 {
-  font-size: 2rem;
-  color: #00ffff;
-  text-shadow: 0 0 15px #00ffff;
-}
-
-main.contenedor {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 40px;
-  padding: 40px 20px;
-  width: 100%;
-  max-width: 1200px;
-  flex-wrap: wrap;
-}
-
-.bloque {
-  flex: 1;
-  min-width: 300px;
-  background: rgba(255, 255, 255, 0.05);
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: 0 0 25px #5577f1;
-  border: 2px solid #00ffff;
+  padding: 20px;
+  background-color: #000;
+  border-bottom: 2px solid #00cfff;
+  box-shadow: 0 0 25px #00cfff;
   position: relative;
-  transition: box-shadow 0.3s ease;
 }
 
-.bloque:hover::after {
+header::before, footer::before {
   content: "";
   position: absolute;
-  top: -20px;
-  left: -20px;
-  right: -20px;
-  bottom: -20px;
-  background: radial-gradient(circle, rgba(0,255,255,0.3), transparent 70%);
-  border-radius: 30px;
-  animation: estallido 0.6s ease-out;
-  pointer-events: none;
+  top: 0;
+  left: -50%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, #00cfff, transparent);
+  animation: rayos 2s infinite linear;
+  opacity: 0.2;
+  z-index: 0;
 }
 
-@keyframes estallido {
-  0% { opacity: 0; transform: scale(0.5); }
-  50% { opacity: 1; transform: scale(1.2); }
-  100% { opacity: 0; transform: scale(1.5); }
+@keyframes rayos {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(50%); }
 }
 
-h2 {
-  font-size: 1.6rem;
-  margin-bottom: 15px;
-  color: #ffffff;
-  text-shadow: 0 0 10px #3a57d4;
+h1 {
+  color: #00cfff;
+  font-size: 2rem;
+  position: relative;
+  z-index: 1;
 }
 
-input {
-  padding: 10px;
-  font-size: 1rem;
-  border: none;
-  border-radius: 10px;
+/* CONTENEDOR PRINCIPAL */
+.contenedor {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  padding: 30px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* BLOQUES CON DIFUMINACIÓN Y SOMBRA AZUL */
+.bloque {
+  background: linear-gradient(145deg, #1e1e2f, #0a0a0a);
+  border: 1px solid #00cfff;
+  border-radius: 15px;
+  padding: 20px;
   width: 100%;
-  margin-bottom: 15px;
+  max-width: 500px;
+  box-shadow: 0 0 25px rgba(0, 207, 255, 0.4), 0 0 15px rgba(0, 240, 255, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bloque:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 35px #00cfff, 0 0 20px #00f0ff;
+}
+
+/* TÍTULOS BLANCOS CON SOMBRA AZUL SUAVE */
+.bloque h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-align: center;
+  text-shadow: 0 0 8px #00cfff, 0 0 12px #00f0ff;
+}
+
+/* INPUTS CON SOMBRA NEÓN AZUL */
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
   background-color: #0a0a0a;
-  color: #00ffff;
-  box-shadow: 0 0 12px #00ffff;
-  transition: box-shadow 0.3s ease;
+  border: none;
+  border-radius: 8px;
+  color: #00f0ff;
+  box-shadow: 0 0 10px #00f0ff;
 }
 
-input:focus {
-  outline: none;
-  box-shadow: 0 0 20px #6c96f8;
-}
-
+/* BOTONES CON DEGRADADO AZUL-AQUA-CELESTE */
 button {
   padding: 10px 20px;
-  font-size: 1rem;
+  margin: 5px 0;
+  background: linear-gradient(90deg, #00cfff, #00f0ff, #00eaff);
+  background-size: 200% 200%;
+  animation: degradadoBoton 4s ease infinite;
+  color: #000;
   border: none;
-  border-radius: 12px;
-  background: linear-gradient(90deg, #00ffff, #0077ff);
-  color: black;
+  border-radius: 8px;
   font-weight: bold;
   cursor: pointer;
-  box-shadow: 0 0 20px #00ffff;
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
-  margin: 5px;
+  box-shadow: 0 0 15px #00cfff;
+  transition: transform 0.3s ease;
+}
+
+@keyframes degradadoBoton {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 button:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 30px #6585d5;
+  transform: scale(1.05);
 }
 
-.eliminar-box {
-  display: flex;
-  gap: 10px;
-  margin-top: 20px;
-  flex-wrap: wrap;
-}
-
-.saludo-texto {
-  margin-top: 10px;
-  font-size: 1.4rem;
-  color: #00ffff;
-  text-shadow: 0 0 10px #00ffff;
-}
-
-.lista-dinamica {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 20px;
-  justify-content: center;
-}
-
+/* BOTONES DE LISTA DINÁMICA */
 .boton-lista {
-  opacity: 0;
-  transform: scale(0.5);
-  transition: all 0.4s ease;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 10px;
-  background: linear-gradient(90deg, #00ffff, #052d5b);
-  color: black;
-  font-weight: bold;
-  box-shadow: 0 0 20px #4b9eec;
-  cursor: pointer;
-}
-
-.boton-lista.visible {
-  opacity: 1;
-  transform: scale(1);
-}
-
-footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
   padding: 10px;
-  background: rgba(0, 0, 0, 0.8);
-  color: #fff;
-  font-size: 0.9rem;
-  box-shadow: 0 -2px 15px #00ffff;
-  border-top: 2px solid #00ffff;
+  background: linear-gradient(90deg, #00cfff, #00f0ff);
+  color: #000;
+  border-radius: 8px;
+  margin: 5px;
+  box-shadow: 0 0 10px #00cfff;
 }
 
-.scanner-line {
-  height: 4px;
+/* TABLA DE ESTUDIANTES */
+table {
   width: 100%;
-  background: linear-gradient(90deg, transparent, #00ffff, #0077ff, transparent);
-  animation: scan 2s infinite linear;
+  border-collapse: collapse;
+  margin-top: 10px;
+  background-color: #0a0a0a;
+  color: #f0f8ff;
+  box-shadow: 0 0 10px #00cfff;
 }
 
-@keyframes scan {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
+th, td {
+  padding: 10px;
+  border: 1px solid #00cfff;
+  text-align: center;
+}
+
+th {
+  background-color: #1a1a2e;
+  color: #00cfff;
+}
+
+/* FOOTER FINAL */
+footer {
+  margin-top: 50px;
+  padding: 20px;
+  border-top: 2px solid #00cfff;
+  box-shadow: 0 -5px 20px #00cfff;
+  color: #00cfff;
+  position: relative;
 }

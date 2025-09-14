@@ -2,40 +2,60 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title> PROGRAMA ALEATORIO🚀</title>
+  <title>Aplicación Futurista</title>
   <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
+
   <header>
-    <h1>PROGRAMA ALEATORIO🚀</h1>
-    <div class="scanner-line"></div>
+    <h1>Panel de Control</h1>
   </header>
 
   <main class="contenedor">
-    <section class="bloque bloque-nombre">
-      <h2>¿Cuál es tu nombre?</h2>
-      <input type="text" id="nombre" placeholder="Escribe tu nombre aquí" />
+
+    <!-- SALUDO -->
+    <section class="bloque">
+      <h2>Saludo</h2>
+      <input type="text" id="input" placeholder="Escribe tu nombre" />
       <button onclick="mostrarNombre()">Mostrar</button>
-      <div id="saludo" class="saludo-texto"></div>
+      <p id="resultado" class="saludo-texto"></p>
     </section>
 
-    <section class="bloque bloque-lista">
-      <h2>Lista Dinámica</h2>
-      <button onclick="InsertarLista()">Insertar número aleatorio</button>
-
-      <div class="eliminar-box">
-        <input type="number" id="eliminarValor" placeholder="Número a eliminar" />
-        <button onclick="EliminarLista()">Eliminar</button>
-      </div>
-
-      <div id="resultado" class="lista-dinamica"></div>
+    <!-- LISTA DINÁMICA -->
+    <section class="bloque">
+      <h2>Lista de Números</h2>
+      <button onclick="InsertarLista()">Insertar Número</button>
+      <button onclick="EliminarElementoLista()">Eliminar Número</button>
+      <input type="text" id="inputEliminar" placeholder="Número a eliminar" />
+      <div id="lista-contenedor" class="lista-dinamica"></div>
     </section>
+
+    <!-- FUNCIONES DE ESTUDIANTES -->
+    <section class="bloque">
+      <h2>Funciones de Estudiantes</h2>
+      <button onclick="MostrarNombre()">Mostrar Años de Nacimiento</button>
+      <button onclick="MostrarHabilitadosOEP()">Mostrar Habilitados OEP</button>
+      <div id="funciones-output"></div>
+    </section>
+
+    <!-- FORMULARIO DE ESTUDIANTE -->
+    <section class="bloque">
+      <h2>Agregar Estudiante</h2>
+      <input type="text" id="input_name" placeholder="Nombre completo" />
+      <input type="text" id="input_edad" placeholder="Edad" />
+      <input type="text" id="input_correo" placeholder="Correo electrónico" />
+      <input type="text" id="input_carrera" placeholder="Carrera" />
+      <input type="text" id="input_phone" placeholder="Teléfono" />
+      <button onclick="AddEstudiante()">Agregar</button>
+    </section>
+
+    <!-- TABLA -->
+    <section class="bloque">
+      <h2>Tabla de Estudiantes</h2>
+      <div id="tabla-container"></div>
+    </section>
+
   </main>
-
-  <footer>
-    <div class="scanner-line"></div>
-    <p>🚀 Diseñado por Jaqueline</p>
-  </footer>
 
   <script src="script.js"></script>
 </body>

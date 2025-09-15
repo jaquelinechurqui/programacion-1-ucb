@@ -13,14 +13,34 @@ function redondear() {
   console.log("Resultado:", redondeado);
 }
 
-function contarLetra(){
-    let buscar = document.getElementById("letraBuscar").value;
+function contarLetra() {
+      let nombre = document.getElementById("nombreUsuario").value.toLowerCase();
+      let letra = document.getElementById("letraBuscar").value.toLowerCase();
+      let contador = 0;
 
+      for (let i = 0; i < nombre.length; i++) {
+        if (nombre.charAt(i) === letra) {
+          contador++;
+        }
+      }
 
-}
-
+      let mensaje = "La letra '" + letra + "' aparece " + contador + " veces.";
+      console.log(mensaje);
+      document.getElementById("resultadoContador").textContent = mensaje;
+    }
 
 function mostrarPares() {
-    let limite = document.getElementById("limite").value;
-    while (contador < 10);
-}
+      let limite = Number(document.getElementById("limite").value);
+      let contador = 0;
+      let resultado = "";
+
+      while (contador <= limite) {
+        if (contador % 2 === 0) {
+          resultado += contador + "\n";
+        }
+        contador++;
+      }
+
+      console.log("Números pares hasta " + limite + ":\n" + resultado);
+      document.getElementById("resultadoPares").textContent = resultado;
+    }

@@ -2,37 +2,68 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Interfaz Estudiantes</title>
-  <link rel="stylesheet" href="estilos.css">
+  <title>Letra en Mayúscula</title>
+  <style>
+    body {
+      background-color: #0a0a0a;
+      color: #00ffff;
+      font-family: 'Courier New', monospace;
+      padding: 20px;
+    }
+    .cuadro {
+      border: 2px solid #00ffff;
+      padding: 15px;
+      margin: 15px 0;
+      background-color: #001f2f;
+      box-shadow: 0 0 10px #00ffff;
+    }
+    input, button {
+      background-color: #000;
+      color: #00ffff;
+      border: 1px solid #00ffff;
+      padding: 8px;
+      margin-top: 10px;
+    }
+  </style>
 </head>
 <body>
-  <h2>¿Cuál es tu nombre?</h2>
 
-  <input type="text" id="input" placeholder="Escribe tu input aquí" />
-  <button onclick="mostrarNombre()">Mostrar</button>
-  <button onclick="InsertarLista()">INSERTAR LISTA</button>
-  <button onclick="EliminarElementoLista()">ELIMINAR ELEMENTO DE LISTA</button>
-  <button onclick="MostrarNombre()">MOSTRAR NOMBRES DEL ARRAY/LISTA</button>
-  <button onclick="MostrarHabilitadosOEP()">MOSTRAR HABILITADOS OEP</button>
+  <div class="cuadro">
+    <h2>🔤 Elige una letra de tu nombre</h2>
+    <label>Nombre:</label><br>
+    <input type="text" id="nombre1" placeholder="Escribe tu nombre"><br><br>
 
-  <input type="text" id="input_name" placeholder="Escribe tu nombre" />
-  <input type="text" id="input_edad" placeholder="Escribe tu edad" />
-  <input type="text" id="input_correo" placeholder="Escribe tu email" />
-  <input type="text" id="input_carrera" placeholder="Escribe tu carrera" />
-  <input type="text" id="input_phone" placeholder="Escribe tu teléfono" />
-  <button onclick="AddEstudiante()">AGREGAR ESTUDIANTE</button>
+    <label>Posición (empezando desde 0):</label><br>
+    <input type="number" id="posicion" placeholder="Ej: 2"><br><br>
 
-  <p id="saludo" class="saludo-texto"></p>
-  <div id="resultado" class="lista-contenedor"></div>
-  <div id="tabla-container"></div>
-  
-  </select id ="colorSelect" onchange="displayColor()">
-      <option value="">-- Choose a color --</option>
-  </select>
+    <button onclick="mostrarLetra()">Mostrar letra</button>
+    <p id="resultado">Aquí aparecerá la letra</p>
 
 
+    <input type="number" id="numeroRedondear" placeholder="Escribe un número">
+    <button onclick="redondear()">Redondear</button>
+    <p id="resultadoRedondeo"></p>
 
-  <script src="script.js"></script>
+
+    <h2>🔍 Contador de letras</h2>
+
+    <label>Letra a buscar:</label><br>
+    <input type="text" id="letraBuscar" maxlength="1" placeholder="Ej: a"><br><br>
+
+    <button onclick="contarLetra()">Contar letra</button>
+    <p id="resultadoContador">Aquí aparecerá el resultado</p>
+
+
+    <h2>🔄 Mostrar números pares con while</h2>
+    <label>Ingresa un número:</label><br>
+    <input type="number" id="limite" placeholder="Ej: 10"><br><br>
+    <button onclick="mostrarPares()">Mostrar pares</button>
+    <pre id="resultadoPares">Aquí aparecerán los pares</pre>
+
+  </div>
+
+  <!-- SCRIPT -->
+    <script src="script.js"></script>
+
 </body>
 </html>
-

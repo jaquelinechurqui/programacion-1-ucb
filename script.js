@@ -1,109 +1,166 @@
-console.log (Math.floor(0.9)); /// redondea al anterior en este caso sera 0
-console.log (Math.cell(0.9)); /// redondea al entero de arriba en este caso sera 1
-console.log(Math.PI);
-console.log(Math.sqrt(4));
+// ==============================
+// Clase Pasajero
+// ==============================
+class Pasajero {
+    // Atributos
+    nombre = "";
+    edad = 0;
+    genero = "";
+    tipoBoleto = "";
 
+    // Constructor
+    constructor(paramNombre, paramEdad, paramGenero, paramTipoBoleto){ 
+        this.nombre  =  paramNombre;
+        this.edad  =  paramEdad;
+        this.genero  =  paramGenero;
+        this.tipoBoleto  =  paramTipoBoleto;
+    }
+    
+    // Setters
+    setNombre(paramNombre){ this.nombre = paramNombre; }
+    setEdad(paramEdad){ this.edad = paramEdad; }
+    setGenero(paramGenero){ this.genero = paramGenero; }
+    setTipoBoleto(paramTipoBoleto){ this.tipoBoleto = paramTipoBoleto; }
 
-///CADENAS, CONCATENACION
-var nombre = "Kristhen";
-var cadena = 'HOLA'+ nombre;
-var resultado 
-console.log (cadena.length);  ///length  sirve par ver la longitud d el aacadena incluye espacios
+    // Getters
+    GetNombre (){ return this.nombre; }
+    GetEdad (){ return this.edad; }
+    GetGenero (){ return this.genero; }
+    GetTipoBoleto (){ return this.tipoBoleto; }
 
-if (nombre.indexOf("Kristhen" != -1)){ /// index of e spara saber is el valoe estadentro d ela cadena pero tabien nos aydua a saber l aposicion de un elemento
-    console.log ("Eres el tutor")
-    }else {
-        console.log("No eres el tutor");
+    // Mostrar datos
+    ToString(){
+        return "Pasajero: " + 
+            "Nombre: "  + this.GetNombre() + ", " +
+            "Edad: "  + this.GetEdad() + ", " +
+            "Genero: " + this.GetGenero() + ", " +
+            "Tipo de Boleto: " + this.GetTipoBoleto();
+    }
+}
+
+// ==============================
+// Clase BoteRescate
+// ==============================
+class BoteRescate {
+    capacidad = 0;
+    ListaOcupantes = [];
+
+    constructor(paramCapacidad) { 
+        this.capacidad = paramCapacidad;
+        this.ListaOcupantes = [];
     }
 
-console.log(nombre.indexOf[1]);  /// la primer apsiicon siempre es 0
-//tambien podemos ver la posicion con charAt
+    // Setters y Getters
+    setCapacidad(paramCapacidad){ this.capacidad = paramCapacidad; }
+    setListaOcupantes(paramLista){ this.ListaOcupantes = paramLista; }
+    getCapacidad(){ return this.capacidad; }
+    getListaOcupantes(){ return this.ListaOcupantes; }
 
-console.log (nombre.charAt(1));
-
-//REPLACE es reemplazar
-nombre = nombre.replace ("K", "C");
-console.log(nombre);
-//slice es para obtener pedazos d ela cadena
-console.log(nombre.slice(1,2)); //el dos no e sinclusivo, si tomo 1, 3 toara el  ri, peo en 1-2 toma solo la 
-// PARA CONVERTIR  mayuscula
-console.log(nombre.toUpperCase());
-//PARA CONVERTIR A MINUSCULA
-console.log(nombre.toLowerCase());
-//PUSH
-lista.push(nombre);     // es par aanidr un valor al final d elista
-//splice elimiman un valor agrega o reemplaza
-let months = ["January", "February", "Monday", "Tuesday"];
-let days = months.splice(2, 2, "March", "April");
-
-
-let nombre = ["A", "B", "C", "D"];
-let pos = 1;
-
-lista.splice(pos, 1); // elimina 1 elemento desde la posición 1
-// INCLUDES
-let lista = [5, 8, 10];
-
-lista.includes(8); // ✅ true → porque el 8 está en la lista
-lista.includes(3); // ❌ false → porque el 3 no está
-
-//charAt , me ayuda a saber que letra esta segun su posicion
-let nombre = "Kristhen";
-console.log(nombre.charAt(0)); // "K"
-console.log(nombre.charAt(3)); // "s"
-console.log(nombre.charAt(100)); // "" (vacío, porque no existe esa posición)
-
-
-
-//CVONDICONLALES . puede ser verdadero o fals0
-
-/* operadores logicos:
-|| or
-&& AND ---- if (numero_uno && true)---> ambas deben ser verdaderos
-== IGUAL, Comparar
-=== comapra el tipo d evariable
-!no
-!= diferente de */
-
-//if
-
-if(true){
-    console.log("La condicion fue verdadera");
-}
-
-
-var numero_uno = 23;
-var numero_dos = 30;
-if (numero_uno > numero_dos){
-    console.log("Ingrese");
-}
-
-if(numero_uno == numero_dos){  // el == convierte al mismo tipo d evariable es decir si uno e snumero y el otro texto convierte al mismo tipo y los compara
-    console.log("ingrese al programa");
-}
-
-if(numero_uno === numero_dos){  // el === compara el tipo de  variable, no convierte el dato, un 30 caden no e sigual aun 30  nnuemro, === directamente convieete los datos.
-    console.log("ingrese al programa");
-}
-
-
-if(True){
-}else if(false){
-
-}else{
-    console.log();
-}
-
-
-
-document.getElementById(valor).value; // value solo se ocupa en <input> , <textarea>, <select>
-document.getElementById("resultado").textContent = "La letra es: " + letra; //Si querés mostrar algo en un <p> o <div>, necesitás usar .textContent.
-
-//WHILE
-contador = 0;
-while(contador<10){ // asi retorna verdadero se ejecuta y si retorna falso no se ejecuta, el codigo se ejecuta constantemente, hasta que de falsa
-    contador ++; // es contador mas 1
-    if (contador % 2 == 0){
-        console.log(contador);
+    // Agregar pasajero
+    agregarPasajero(pasajero){
+        if(this.ListaOcupantes.length < this.capacidad){
+            this.ListaOcupantes.push(pasajero);
+            return true;
+        } else {
+            return false;
+        }
     }
+
+    // Mostrar ocupantes 
+    listarOcupantes(){
+        let texto = "Bote con capacidad: " + this.capacidad + "\n";
+
+        if(this.ListaOcupantes.length === 0){
+            texto += "No hay ocupantes.\n";
+        } else {
+            for(let i = 0; i < this.ListaOcupantes.length; i++){
+                let p = this.ListaOcupantes[i];
+                texto += (i+1) + ". " + p.GetNombre() + 
+                         " (" + p.GetGenero() + ", " + p.GetEdad() + " años, " + p.GetTipoBoleto() + ")\n";
+            }
+        }
+        return texto;
+    }
+
+    // Información general
+    mostrarInformacion(){
+        let texto = "INFORMACIÓN DEL BOTE\n";
+        texto += "Capacidad máxima: " + this.capacidad + "\n";
+        texto += "Pasajeros actuales: " + this.ListaOcupantes.length + "\n";
+        return texto;
+    }
+}
+
+// ==============================
+// Algoritmo de evacuación
+// ==============================
+function simulacionEvacuacion() {
+
+    // --- Crear pasajeros ---
+    let pasajeros = [
+        new Pasajero("Ana", 25, "F", "1ra"),
+        new Pasajero("Luis", 30, "M", "2da"),
+        new Pasajero("Sofía", 10, "F", "3ra"),
+        new Pasajero("Pedro", 40, "M", "1ra"),
+        new Pasajero("Juan", 28, "M", "3ra"),
+        new Pasajero("Lucía", 12, "F", "3ra"),
+        new Pasajero("Elena", 45, "F", "2da"),
+        new Pasajero("Miguel", 18, "M", "3ra"),
+        new Pasajero("Valeria", 8, "F", "1ra"),
+        new Pasajero("Andrés", 60, "M", "2da")
+    ];
+
+    // --- Crear varios botes ---
+    let botes = [
+        new BoteRescate(2),
+        new BoteRescate(3),
+        new BoteRescate(3)
+    ];
+
+    // --- Ordenar pasajeros por criterio (género/edad, luego clase de boleto) ---
+    pasajeros.sort(function(a, b){
+        // Mujeres y niños primero
+        let prioridadA = (a.GetGenero() === "F" || a.GetEdad() < 18) ? 0 : 1;
+        let prioridadB = (b.GetGenero() === "F" || b.GetEdad() < 18) ? 0 : 1;
+
+        if(prioridadA !== prioridadB) return prioridadA - prioridadB;
+
+        // Orden por clase de boleto
+        let ordenClase = {"1ra":0, "2da":1, "3ra":2};
+        return ordenClase[a.GetTipoBoleto()] - ordenClase[b.GetTipoBoleto()];
+    });
+
+    // --- Llenar los botes ---
+    let fuera = [];
+    for(let p of pasajeros){
+        let subio = false;
+        for(let bote of botes){
+            if(bote.agregarPasajero(p)){
+                subio = true;
+                break;
+            }
+        }
+        if(!subio){
+            fuera.push(p);
+        }
+    }
+
+    // --- Mostrar resultados ---
+    let texto = "SIMULACIÓN DE EVACUACIÓN \n\n";
+
+    for(let i = 0; i < botes.length; i++){
+        texto += "Bote " + (i+1) + ":\n";
+        texto += botes[i].listarOcupantes() + "\n";
+    }
+
+    if(fuera.length > 0){
+        texto += "\nPasajeros que NO lograron subir:\n";
+        for(let p of fuera){
+            texto += "- " + p.ToString() + "\n";
+        }
+    } else {
+        texto += "\nTodos los pasajeros lograron subir a los botes.\n";
+    }
+
+    return texto;
 }

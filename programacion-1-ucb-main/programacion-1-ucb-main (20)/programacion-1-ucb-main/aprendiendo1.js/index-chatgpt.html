@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Profesional</title>
+    <style>
+        :root {
+            --color-primario: #FFD703;
+            --color-secundario: #585F6C;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            color: var(--color-secundario);
+        }
+
+        header {
+            background-color: var(--color-primario);
+            padding: 1rem;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--color-secundario);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        main {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        button {
+            background-color: var(--color-secundario);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #3e4450;
+        }
+
+        footer {
+            background-color: var(--color-secundario);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+        }
+
+        /* Responsivo */
+        @media (max-width: 600px) {
+            header, footer {
+                font-size: 1.2rem;
+                padding: 0.8rem;
+            }
+            main {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        Mi Página Profesional
+    </header>
+
+    <main>
+        <h2>Bienvenido</h2>
+        <p>Pulsa el botón para ejecutar <b>mi primer algoritmo</b> desde el archivo <i>aprendiendo.js</i>.</p>
+        <button onclick="miPrimerAlgoritmo()">Ejecutar algoritmo</button>
+    </main>
+
+    <footer>
+        &copy; 2025 - Desarrollado por [Tu Nombre]
+    </footer>
+
+    <!-- Archivo donde estarán tus funciones -->
+    <script src="aprendiendo.js"></script>
+
+    <!-- Función temporal de ejemplo para que el botón funcione -->
+    <script>
+        function miPrimerAlgoritmo() {
+            alert("¡Este es mi primer algoritmo!");
+        }
+    </script>
+
+</body>
+</html>

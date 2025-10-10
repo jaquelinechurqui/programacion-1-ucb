@@ -1,0 +1,158 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(180deg, #0a0a0a, #1a1a2e);
+  color: #e0f7ff;
+  overflow-x: hidden;
+}
+
+/* HEADER Y FOOTER CON RAYOS AZULES */
+header, footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #000;
+  border-bottom: 2px solid #00cfff;
+  box-shadow: 0 0 25px #00cfff;
+  position: relative;
+}
+
+header::before, footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, #00cfff, transparent);
+  animation: rayos 2s infinite linear;
+  opacity: 0.2;
+  z-index: 0;
+}
+
+@keyframes rayos {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(50%); }
+}
+
+h1 {
+  color: #00cfff;
+  font-size: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* CONTENEDOR PRINCIPAL */
+.contenedor {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  padding: 30px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* BLOQUES CON DIFUMINACIÓN Y SOMBRA AZUL */
+.bloque {
+  background: linear-gradient(145deg, #1e1e2f, #0a0a0a);
+  border: 1px solid #00cfff;
+  border-radius: 15px;
+  padding: 20px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 0 25px rgba(0, 207, 255, 0.4), 0 0 15px rgba(0, 240, 255, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bloque:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 35px #00cfff, 0 0 20px #00f0ff;
+}
+
+/* TÍTULOS BLANCOS CON SOMBRA AZUL SUAVE */
+.bloque h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-align: center;
+  text-shadow: 0 0 8px #00cfff, 0 0 12px #00f0ff;
+}
+
+/* INPUTS CON SOMBRA NEÓN AZUL */
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #0a0a0a;
+  border: none;
+  border-radius: 8px;
+  color: #00f0ff;
+  box-shadow: 0 0 10px #00f0ff;
+}
+
+/* BOTONES CON DEGRADADO AZUL-AQUA-CELESTE */
+button {
+  padding: 10px 20px;
+  margin: 5px 0;
+  background: linear-gradient(90deg, #00cfff, #00f0ff, #00eaff);
+  background-size: 200% 200%;
+  animation: degradadoBoton 4s ease infinite;
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0 15px #00cfff;
+  transition: transform 0.3s ease;
+}
+
+@keyframes degradadoBoton {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+/* BOTONES DE LISTA DINÁMICA */
+.boton-lista {
+  padding: 10px;
+  background: linear-gradient(90deg, #00cfff, #00f0ff);
+  color: #000;
+  border-radius: 8px;
+  margin: 5px;
+  box-shadow: 0 0 10px #00cfff;
+}
+
+/* TABLA DE ESTUDIANTES */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  background-color: #0a0a0a;
+  color: #f0f8ff;
+  box-shadow: 0 0 10px #00cfff;
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid #00cfff;
+  text-align: center;
+}
+
+th {
+  background-color: #1a1a2e;
+  color: #00cfff;
+}
+
+/* FOOTER FINAL */
+footer {
+  margin-top: 50px;
+  padding: 20px;
+  border-top: 2px solid #00cfff;
+  box-shadow: 0 -5px 20px #00cfff;
+  color: #00cfff;
+  position: relative;
+}

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Simulación de Evacuación</title>
+</head>
+<body>
+    <h1>Simulación de Evacuación de Bote con 10 Pasajeros</h1>
+    <button onclick="mostrarEvacuacion()">Iniciar Evacuación</button>
+    <pre id="salida"></pre>
+
+    <!-- Conexión al script.js -->
+    <script src="script.js"></script>
+    <script>
+        function mostrarEvacuacion() {
+            let salida = simulacionEvacuacion();
+            document.getElementById("salida").textContent = salida;
+        }
+    </script>
+</body>
+</html>

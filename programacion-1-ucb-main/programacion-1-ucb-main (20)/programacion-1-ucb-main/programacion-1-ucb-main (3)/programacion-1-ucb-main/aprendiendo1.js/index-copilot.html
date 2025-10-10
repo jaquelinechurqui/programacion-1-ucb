@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mi Proyecto Web</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    :root {
+      --color-primario: #FFD703;
+      --color-secundario: #022779;
+      
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9f9f9;
+      color: var(--color-secundario);
+    }
+
+    header {
+      background-color: var(--color-primario);
+      color: var(--color-secundario);
+      padding: 1rem 2rem;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    footer {
+      background-color: var(--color-secundario);
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+    }
+
+    main {
+      padding: 2rem;
+      text-align: center;
+    }
+
+    button {
+      background-color: var(--color-secundario);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color:   #022779;
+    }
+
+    @media (max-width: 600px) {
+      header, footer, main {
+        padding: 1rem;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Bienvenido a Mi Programa</h1>
+    <p>Jaqueline Churqui</p>
+  </header>
+
+  <main>
+    <h2>Interacción con Algoritmos</h2>
+    <p>Haz clic en el botón para ejecutar tu primer algoritmo:</p>
+    <button onclick="miPrimerAlgoritmo()">Ejecutar Algoritmo</button>
+  </main>
+  
+    <input id="binarioInput" type="text" placeholder="Ingrese un binario" />
+
+    <button type="button" onclick="binarioADecimal(document.getElementById('binarioInput').value)">
+      Convertir a decimal
+    </button>
+
+
+
+  <footer>
+    <p>&copy; 2025,  mi primer proyecto web - Java Script</p>
+  </footer>
+
+  <script src="aprendiendo.js"></script>
+</body>
+</html>

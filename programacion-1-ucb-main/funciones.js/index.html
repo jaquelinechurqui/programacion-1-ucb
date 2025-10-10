@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora Smart 💡</title>
+  <link rel="stylesheet" href="estilos.css" />
+  <style>
+    /* Estructura para mantener el footer abajo */
+    body.layout {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    main.contenido {
+      flex: 1;
+    }
+  </style>
+</head>
+<body class="layout">
+  <header>CALCULADORA SMART 💡</header>
+
+  <nav>
+    <button onclick="mostrar('seccion1')">Decimal → Binario/Octal/Hex</button>
+    <button onclick="mostrar('seccion2')">Suma Binaria→ Decimal</button>
+    <button onclick="mostrar('seccion3')">Hexadecimal → Binario</button>
+    <button onclick="mostrar('seccion4')">Binario → Hex</button>
+    <button onclick="mostrar('seccion5')">Operaciones Binarias</button>
+    <button onclick="mostrar('seccion6')">Tabla Multiplicar</button>
+    <button onclick="mostrar('seccion7')">Sumas Matemáticas</button>
+  </nav>
+
+  <main class="contenido">
+    <!-- Sección 1 -->
+    <div id="seccion1" class="seccion">
+      <h2>Conversión Decimal</h2>
+      <label for="decimal">Número decimal:</label>
+      <input type="number" id="decimal" placeholder="Número decimal" />
+      <label for="base">Base destino (2, 8, 16...):</label>
+      <input type="number" id="base" placeholder="Ej. 2 para binario" />
+      <button onclick="convertir()">Convertir</button>
+      <div class="resultado" id="resultadoBinario"></div>
+    </div>
+
+    <!-- Sección 2 -->
+    <div id="seccion2" class="seccion">
+      <h2>Suma de Binarios a decimal</h2>
+      <input type="text" id="bin1" placeholder="Binario 1" />
+      <input type="text" id="bin2" placeholder="Binario 2" />
+      <button onclick="sumarBinarios()">Sumar</button>
+      <div class="resultado" id="resultadoSuma"></div>
+    </div>
+
+    <!-- Sección 3 -->
+    <div id="seccion3" class="seccion">
+      <h2>Hexadecimal a Binario</h2>
+      <input type="text" id="hex" placeholder="Hexadecimal" />
+      <button onclick="hexABinario()">Convertir</button>
+      <div class="resultado" id="resultadoHexBin"></div>
+    </div>
+
+    <!-- Sección 4 -->
+    <div id="seccion4" class="seccion">
+      <h2>Binario a Hexadecimal</h2>
+      <input type="text" id="binHex" placeholder="Binario" />
+      <button onclick="binarioAHex()">Convertir</button>
+      <div class="resultado" id="resultadoBinHex"></div>
+    </div>
+
+    <!-- Sección 5 -->
+    <div id="seccion5" class="seccion">
+      <h2>Operaciones Binarias</h2>
+      <input type="text" id="binOp1" placeholder="Binario 1" />
+      <input type="text" id="binOp2" placeholder="Binario 2" />
+      <select id="operacion">
+        <option value="+">+</option>
+        <option value="-">−</option>
+        <option value="*">×</option>
+        <option value="/">÷</option>
+      </select>
+      <button onclick="operarBinarios()">Operar</button>
+      <div class="resultado" id="resultadoOperacion"></div>
+    </div>
+
+    <!-- Sección 6 -->
+    <div id="seccion6" class="seccion">
+      <h2>Tabla de Multiplicar</h2>
+      <input type="number" id="tablaNum" placeholder="Número" />
+      <button onclick="tablaMultiplicar()">Generar</button>
+      <textarea id="resultadoTabla" rows="10" readonly></textarea>
+    </div>
+
+    <!-- Sección 7 -->
+    <div id="seccion7" class="seccion">
+      <h2>Suma de Pares</h2>
+      <input type="number" id="limitePares" placeholder="Hasta qué número" />
+      <button onclick="sumaPares()">Sumar</button>
+      <div class="resultado" id="resultadoPares"></div>
+
+      <h2>Suma de Primos</h2>
+      <input type="number" id="limitePrimos" placeholder="Hasta qué número" />
+      <button onclick="sumaPrimos()">Sumar</button>
+      <div class="resultado" id="resultadoPrimos"></div>
+    </div>
+  </main>
+
+  <footer>
+    <p> calculadora_smart@gmail.com / 📱 cel. 63451159</p>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      mostrar("seccion1");
+    });
+  </script>
+  <script src="ejercicios.js"></script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Práctica de JavaScript</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0a0a0a;
+      color: #00ffff;
+      padding: 20px;
+    }
+
+    .bloque {
+      border: 2px solid #00ffff;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 15px #00ffff;
+    }
+
+    input, select, button {
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      background-color: #001f2f;
+      color: #00ffff;
+      box-shadow: 0 0 10px #00ffff;
+    }
+
+    button:hover {
+      background-color: #003f5f;
+      cursor: pointer;
+    }
+
+    #resultado {
+      margin-top: 15px;
+      padding: 10px;
+      background-color: #001f2f;
+      border-radius: 8px;
+      box-shadow: 0 0 10px #00ffff;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Práctica de JavaScript</h1>
+
+  <!-- 🔘 Botón 1: Saludo -->
+  <div class="bloque">
+    <h2>Saludo</h2>
+    <input type="text" id="nombreInput" placeholder="Escribe tu nombre">
+    <button onclick="saludar()">Saludar</button>
+    <div id="saludoResultado"></div>
+  </div>
+
+  <!-- 🔘 Botón 2: Insertar número -->
+  <div class="bloque">
+    <h2>Insertar número</h2>
+    <button onclick="insertarNumero()">Insertar número aleatorio</button>
+    <div id="listaNumeros"></div>
+  </div>
+
+  <!-- 🔘 Botón 3: Eliminar número -->
+  <div class="bloque">
+    <h2>Eliminar número</h2>
+    <input type="text" id="numeroEliminar" placeholder="Número a eliminar">
+    <button onclick="eliminarNumero()">Eliminar número</button>
+    <div id="resultado"></div>
+  </div>
+
+  <!-- Acá vas a escribir tu JS -->
+  <script src="script.js"></script>
+
+
+</body>
+</html>

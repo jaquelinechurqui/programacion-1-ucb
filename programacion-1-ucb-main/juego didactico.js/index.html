@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Atrapa el Número 🎮</title>
+  <link rel="stylesheet" href="estilos.css" />
+</head>
+<body>
+  <header>
+    <h1>Atrapa el Número 🎯</h1>
+  </header>
+
+  <main>
+    <div class="panel">
+      <p id="instruccion">Haz clic en el número: <span id="numeroObjetivo">?</span></p>
+      <div class="botones">
+        <button onclick="verificar(1)">1</button>
+        <button onclick="verificar(2)">2</button>
+        <button onclick="verificar(3)">3</button>
+        <button onclick="verificar(4)">4</button>
+        <button onclick="verificar(5)">5</button>
+      </div>
+      <div class="estado">
+        <p>Puntos: <span id="puntos">0</span></p>
+        <p>Vidas: <span id="vidas">3</span></p>
+      </div>
+      <button class="reiniciar" onclick="iniciarJuego()">🔄 Reiniciar</button>
+    </div>
+  </main>
+
+
+  <script src="../juego didactico.js/juegos.js"></script>
+</body>
+</html>

@@ -130,3 +130,12 @@ canvas {
     padding: 0.5em;
   }
 }
+
+/* 🔹 NUEVO: separación visual entre grupos de ejercicios */
+.sidebar h2:nth-of-type(3) {
+  margin-top: 25px;
+  color: #ffd633;
+  border-top: 1px dashed var(--ucb-yellow);
+  padding-top: 10px;
+}
+

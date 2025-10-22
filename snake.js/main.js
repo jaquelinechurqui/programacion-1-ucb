@@ -12,6 +12,8 @@ const btnMenu = document.getElementById("btnMenu");
 const btnReset = document.getElementById("btnReset");
 
 startButton.addEventListener("click", () => {
+  playButtonSound(); // 🔊 sonido de clic en botón
+
   const name = nameInput.value.trim();
   if(!name){ alert("Escribe tu nombre!"); return; }
   playerName = name;
@@ -30,7 +32,12 @@ function generateLevelButtons() {
     btn.textContent = lvl.name;
     btn.dataset.level = lvl.number;
     if(lvl.locked){ btn.classList.add("locked"); btn.disabled=true; }
-    btn.addEventListener("click",()=>{ if(!lvl.locked) startLevel(lvl.number); });
+    btn.addEventListener("click",()=>{
+      if(!lvl.locked){
+        playButtonSound(); // 🔊 sonido al seleccionar nivel
+        startLevel(lvl.number);
+      }
+    });
     levelsContainer.appendChild(btn);
   });
   updateLevelButtons();
@@ -61,11 +68,13 @@ function startLevel(levelNumber){
 }
 
 btnMenu.addEventListener("click",()=>{
+  playButtonSound(); // 🔊 sonido al volver al menú
   gameScreen.style.display="none";
   showLevelMenu();
 });
 
 btnReset.addEventListener("click",()=>{
+  playButtonSound(); // 🔊 sonido al presionar "Reiniciar"
   if(confirm("Borrar progreso?")){
     localStorage.removeItem("snakePlayer");
     playerName = "";

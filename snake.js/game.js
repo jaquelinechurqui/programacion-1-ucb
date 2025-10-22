@@ -146,6 +146,9 @@ function obstacleCollision(head) {
 // ===== Fin del juego =====
 function endGame() {
   clearInterval(gameInterval);
+
+  playGameOverSound(); // 🔊 sonido al terminar el juego
+
   alert(`🐍 Fin del juego, ${getPlayerName()}!\nPuntaje: ${score}\nNivel alcanzado: ${currentLevelNumber}`);
 
   // Desbloquear siguiente nivel si aplica
@@ -162,7 +165,6 @@ function endGame() {
 
   // Actualizar botones
   if (typeof updateLevelButtons === "function") updateLevelButtons();
-  
 }
 
 // ===== 🐍 VIBORITA ANIMADA VISUAL =====
@@ -212,4 +214,3 @@ drawGame = function() {
   originalDrawGame();  // mantiene toda la lógica original
   renderSnakeVisual(); // añade la víbora visual animada
 };
-

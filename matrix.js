@@ -1,243 +1,174 @@
 class Matrix {
-    rows;
-    cols;
-    data;
-    constructor( rowsParam, colsParam, defaulValue = 0){
-        this.rows = rowsParam;
-        this.cols = colsParam;
-        this.data = [];
+  rows;
+  cols;
+  data;
 
-        for ( let i = 0;i < rowsParam; i ++){
-            const rowTemp = [];
-            for (let j = 0;  j < colsParam; j ++){
-                rowTemp.push(defaulValue);
-            }
-            this.data.push(rowTemp);
-        }    
+  constructor(rowsParam, colsParam, defaultValue) {
+    this.rows = rowsParam;
+    this.cols = colsParam;
+    this.data = [];
+
+    for (let i = 0; i < rowsParam; i++) {
+      const rowTemp = [];
+      for (let j = 0; j < colsParam; j++) {
+        rowTemp.push(defaultValue);
+      }
+      this.data.push(rowTemp);
     }
-    
-//Fubcion de validACION DE RANGO VALIDO EN LA MATRIZ
-    isValidPosition(row,col){
-        return row >= 0 && row < this.rows &&  col>= 0 &&   col < this.cols;
-    
-}
+  }
 
-    setValue(row, col, value)  {
-        if(isValidPosition(row,col)){
-            this.data[row][col] = value;
-        }   
+  //Función de validacion de rango valido en la matriz
+  isValidPosition(row, col) {
+    return row >= 0 && row < this.rows && col >= 0 && col < this.cols;
+  }
+
+  setValue(row, col, value) {
+    //if (isValidPosition(row, col)) {
+    this.data[row][col] = value;
+    //}
+  }
+
+  getValue(row, col) {
+    if (this.isValidPosition(row, col)) {
+      return this.data[row][col];
+    } else {
+      return null
     }
+  }
 
-    getValue(row,col){
-        if(this.isValidPosition(row,col)){
-        return this.data[row][col];
-    } else{
-        return null
-    }
-}
-
-    fillRandom(min,max){
-        for(let i = 0; i < this.rows; i ++){
-            for(let j = 0; j < this.cols; j ++){
-                const random = Math.floor(Math.random() * (max - min + 1)) +  min;
-                this.data[i][j] = random;
-            }
-        }
-    }
-
-   fillIncrementRows() {
-    // Cada fila i se rellena con el valor i (0..rows-1)
+  fillRandom(min, max) {
     for (let i = 0; i < this.rows; i++) {
-        for (let j = 0; j < this.cols; j++) {
-            this.data[i][j] = i;
+      for (let j = 0; j < this.cols; j++) {
+        const random = Math.floor(Math.random() * (max - min + 1)) + min;
+        this.data[i][j] = random;
+      }
+    }
+  }
+
+  //EJERCICIO 1
+  ejercicio1(){
+    var suma_total = 0;
+    for( let i = 0; i< this.rows; i++){
+        for( let j = 0; j < this.cols; j++){
+            suma_total += this.data [i][j];
         }
     }
+    return suma_total;
+  }
+
+  //EJERICICIO 2
+  ejercicio2(){
+    let max = this.data [0][0]
+    let min = this.data [0][0]
+   for( let i = 0; i <this.rows; i++){
+        for(let j = 0;  j< this.cols; j ++){
+        var numero = this.data[i][j];
+        if (numero > max){
+            max = numero;
+        }
+        if ( numero < min){
+            min = numero;
+           }
+        }
+    }
+    return {max,min};
 }
 
 
-
-    toString(){
-       return this.data.map(row => row.join('\t'). join('\n'));
+//EJERCICIO 3
+ejercicio3(){
+var suma_total = 0;
+var promedio = [];
+    for( let i = 0; i< this.rows; i++){
+        for( let j = 0; j < this.cols; j++){
+            suma_total += this.data [i][j];
+            promedio = suma_total/(this.rows*this.cols);
+        }
     }
-
-    // ----------------------------
-    // EJERCICIOS DEL PRÁCTICO SIS-112
-    // ----------------------------
-
-    // Ejercicio 1: Cuadrado Relleno
-    fillExercise1() {
-        for (let i = 0; i < this.rows; i++) {
-            for (let j = 0; j < this.cols; j++) {
-                this.data[i][j] = 1;
-            }
+    return promedio;
+}
+  
+//EJERCICIO 5
+ejercicio5(){
+    for( let i = 0; i< this.rows; i++){
+        for( let j = 0; j < Math.floor(this.cols/2); j++){
+            var temp =this.data[i][j];
+            this.data[i][j]=this.data[i][this.cols-1-j];
+            this.data[i][this.cols-1-j]= temp;
         }
     }
 
-    // Ejercicio 2: Marco Interno
-    fillExercise2() {
-        for (let i = 0; i < this.rows; i++) {
-            for (let j = 0; j < this.cols; j++) {
-                if (i === 0 || i === this.rows - 1 || j === 0 || j === this.cols - 1) {
-                    this.data[i][j] = 0;
-                } else {
-                    this.data[i][j] = 1;
-                }
-            }
-        }
-    }
+}
 
-    // Ejercicio 3: Cruces
-    fillExercise3() {
-        const mid = Math.floor(this.rows / 2);
-        for (let i = 0; i < this.rows; i++) {
-            for (let j = 0; j < this.cols; j++) {
-                if (i === mid || j === mid) {
-                    this.data[i][j] = 1;
-                } else {
-                    this.data[i][j] = 0;
-                }
-            }
-        }
+//EJERCICIO 6  revisar
+ejercicio6() {
+    if (this.rows !== this.cols) {
+      // devolver matriz vacía y mensaje de error
+      return { resultMatrix: null, message: "Rotación 90°: se requiere matriz cuadrada." };
     }
+    const n = this.rows;
+    const res = new Matrix(n, n, 0);
+    for (let i = 0; i < n; i++)
+      for (let j = 0; j < n; j++) 
+        res.data[j][n - 1 - i] = this.data[i][j];
+    return { resultMatrix: res, message: "Matriz rotada 90° en sentido horario." };
+  }
 
-    // Ejercicio 4: Bordes y Diagonales
-    fillExercise4() {
-        for (let i = 0; i < this.rows; i++) {
-            for (let j = 0; j < this.cols; j++) {
-                if (i === 0 || j === 0 || i === this.rows - 1 || j === this.cols - 1) {
-                    this.data[i][j] = 1;
-                } else if (i === j || i + j === this.cols - 1) {
-                    this.data[i][j] = 2;
-                } else {
-                    this.data[i][j] = 0;
-                }
+
+
+
+
+
+
+  //EJERICICIO 14
+  ejercicio14(){
+    for( let i = 0; i <this.rows; i++){
+        for(let j = 0;  j< this.cols; j ++){
+            if (i ===j){
+                this.data [i][j] = 1;
+            }else{
+                this.data [i][j]= 0;
             }
-        }
+        } 
     }
+  }
 
-    // Ejercicio 5: Bandera (3 franjas horizontales)
-    fillExercise5() {
-        const franja = Math.floor(this.rows / 3);
-        for (let i = 0; i < this.rows; i++) {
-            let valor = 0;
-            if (i < franja) valor = 1;
-            else if (i < franja * 2) valor = 2;
-            else valor = 0;
-            for (let j = 0; j < this.cols; j++) {
-                this.data[i][j] = valor;
-            }
-        }
-    }
 
-    // Ejercicio 6: Relleno Alterno
-    fillExercise6() {
-        for (let i = 0; i < this.rows; i++) {
-            const valor = i % 2 === 0 ? 1 : 0;
-            for (let j = 0; j < this.cols; j++) {
-                this.data[i][j] = valor;
-            }
-        }
-    }
+//ejercicio 66 del exmaenOJO
+class Matrix {
+  constructor(rows, cols, fill = 0) {
+    this.rows = rows;
+    this.cols = cols;
+    this.data = Array.from({ length: rows }, () => Array(cols).fill(fill));
+  }
 
-    // Ejercicio 7: Zig-Zag Horizontal
-    fillExercise7() {
-        for (let i = 0; i < this.rows; i++) {
-            for (let j = 0; j < this.cols; j++) {
-                if (j === i) {
-                    this.data[i][j] = 1;
-                } else {
-                    this.data[i][j] = 0;
-                }
-            }
-        }
-    }
-
-    // Ejercicio 8: Relleno en Espiral (versión simplificada)
-    fillExercise8() {
-    // Reiniciar matriz a ceros
+  fillRandom(min, max) {
     for (let i = 0; i < this.rows; i++) {
-        for (let j = 0; j < this.cols; j++) {
-            this.data[i][j] = 0;
-        }
+      for (let j = 0; j < this.cols; j++) {
+        this.data[i][j] = Math.floor(Math.random() * (max - min + 1)) + min;
+      }
     }
+  }
 
-    let top = 0;
-    let bottom = this.rows - 1;
-    let left = 0;
-    let right = this.cols - 1;
+  ejercicio66(p, q) {
+    const si = Math.floor((this.rows - p) / 2);
+    const sj = Math.floor((this.cols - q) / 2);
+    const out = new Matrix(p, q, 0);
 
-    // Recorremos "capas" pero avanzando las fronteras en 2
-    // para dejar una fila/columna de ceros entre vueltas (camino).
-    while (top <= bottom && left <= right) {
-        // izquierda -> derecha (fila superior)
-        for (let j = left; j <= right; j++) this.data[top][j] = 1;
-        // bajar la frontera superior
-        top++;
-
-        // arriba -> abajo (columna derecha)
-        for (let i = top; i <= bottom; i++) this.data[i][right] = 1;
-        // mover la frontera derecha
-        right--;
-
-        // derecha -> izquierda (fila inferior)
-        if (top <= bottom) {
-            for (let j = right; j >= left; j--) this.data[bottom][j] = 1;
-            bottom--;
-        }
-
-        // abajo -> arriba (columna izquierda)
-        if (left <= right) {
-            for (let i = bottom; i >= top; i--) this.data[i][left] = 1;
-            left++;
-        }
-
-        // IMPORTANTE: avanzamos las fronteras una vez más para dejar
-        // una "línea" de ceros entre esta vuelta y la siguiente.
-        top++;
-        left++;
-        bottom--;
-        right--;
+    for (let i = 0; i < p; i++) {
+      for (let j = 0; j < q; j++) {
+        out.data[i][j] = this.data[si + i][sj + j];
+      }
     }
+    return out;
+  }
 }
 
 
 
-    // Ejercicio 9: Triángulo Superior Izquierdo
-    fillExercise9() {
-        for (let i = 0; i < this.rows; i++) {
-            for (let j = 0; j < this.cols; j++) {
-                if (j <= i) {
-                    this.data[i][j] = 1;
-                } else {
-                    this.data[i][j] = 0;
-                }
-            }
-        }
-    }
 
-    // Ejercicio 10: Triángulo Inferior Derecho
-    fillExercise10() {
-        for (let i = 0; i < this.rows; i++) {
-            for (let j = 0; j < this.cols; j++) {
-                if (j >= this.cols - i - 1) {
-                    this.data[i][j] = 1;
-                } else {
-                    this.data[i][j] = 0;
-                }
-            }
-        }
-    }
 
-    // Ejercicio 11: Cuadrícula
-    fillExercise11() {
-        for (let i = 0; i < this.rows; i++) {
-            for (let j = 0; j < this.cols; j++) {
-                if (i % 2 === 0 || j === 0 || j === this.cols - 1) {
-                    this.data[i][j] = 1;
-                } else {
-                    this.data[i][j] = 0;
-                }
-            }
-        }
-    }
+  toString() {
+    return this.data.map(row => row.join('\t')).join('\n');
+  }
 }

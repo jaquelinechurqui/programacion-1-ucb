@@ -2,25 +2,20 @@
 const canvas = document.getElementById('matrixCanvas');
 const fillButton = document.getElementById('fillBtn');
 const clearButton = document.getElementById('clearBtn');
-const incrementButton = document.getElementById('incrementBtn');
+//anadir aca  tu ejercicio ------------------------------------------------
+const ejercicioUnoBtn = document.getElementById('ejercicioUnoBtn');//Convierto el btn en una var
+const ejercicioDosBtn = document.getElementById('ejercicioDosBtn');
+const ejercicioTresBtn = document.getElementById('ejercicioTresBtn');
+const ejercicioCincoBtn = document.getElementById('ejercicioCincoBtn');
+const ejercicioSeisBtn = document.getElementById('ejercicioSeisBtn');
+const ejercicioCatorceBtn = document.getElementById('ejercicioCatorceBtn');//Convierto el btn en una var
 
-// Botones para los ejercicios del práctico
-const ex1Btn = document.getElementById('ex1Btn');
-const ex2Btn = document.getElementById('ex2Btn');
-const ex3Btn = document.getElementById('ex3Btn');
-const ex4Btn = document.getElementById('ex4Btn');
-const ex5Btn = document.getElementById('ex5Btn');
-const ex6Btn = document.getElementById('ex6Btn');
-const ex7Btn = document.getElementById('ex7Btn');
-const ex8Btn = document.getElementById('ex8Btn');
-const ex9Btn = document.getElementById('ex9Btn');
-const ex10Btn = document.getElementById('ex10Btn');
-const ex11Btn = document.getElementById('ex11Btn');
+
 
 // Contexto de dibujo
 const context = canvas.getContext('2d');
 
-// Instancia de la clase Matrix (10x10)
+// Instancia de la CLASS matrix
 const matrix = new Matrix(10, 10, 0);
 
 // Inicializa el canvas y dibuja la matriz
@@ -29,33 +24,27 @@ function initializeCanvas() {
   window.addEventListener('resize', drawMatrix);
   fillButton.addEventListener('click', fillMatrix);
   clearButton.addEventListener('click', clearCanvas);
-  incrementButton.addEventListener('click', fillIncrementRows);
-
-  // Asignación de eventos a los botones de ejercicios
-  ex1Btn.addEventListener('click', fillExercise1);
-  ex2Btn.addEventListener('click', fillExercise2);
-  ex3Btn.addEventListener('click', fillExercise3);
-  ex4Btn.addEventListener('click', fillExercise4);
-  ex5Btn.addEventListener('click', fillExercise5);
-  ex6Btn.addEventListener('click', fillExercise6);
-  ex7Btn.addEventListener('click', fillExercise7);
-  ex8Btn.addEventListener('click', fillExercise8);
-  ex9Btn.addEventListener('click', fillExercise9);
-  ex10Btn.addEventListener('click', fillExercise10);
-  ex11Btn.addEventListener('click', fillExercise11);
+  //anadir aca tu ejericicio----------------------------------------------------------
+  ejercicioUnoBtn.addEventListener('click', ejercicioUnoBtnApp);//Click a "ejercicioUnoBtn"
+  ejercicioDosBtn.addEventListener('click', ejercicioDosBtnApp);
+  ejercicioTresBtn.addEventListener('click', ejercicioTresBtnApp);
+  ejercicioCincoBtn.addEventListener('click', ejercicioCincoBtnApp);
+  ejercicioSeisBtn.addEventListener('click', ejercicioSeisBtnApp);
+  ejercicioCatorceBtn.addEventListener('click', ejercicioCatorceBtnApp);
+  
 }
 
 // Dibuja la matriz en el canvas
 function drawMatrix() {
-  const width = (canvas.width = canvas.clientWidth);
-  const height = (canvas.height = canvas.clientHeight);
+  const width = canvas.width = canvas.clientWidth;
+  const height = canvas.height = canvas.clientHeight;
   const cellWidth = width / matrix.cols;
   const cellHeight = height / matrix.rows;
 
   context.clearRect(0, 0, width, height);
+  context.font = `${Math.min(cellWidth, cellHeight) / 3}px Arial`;
   context.textAlign = 'center';
   context.textBaseline = 'middle';
-  context.font = `${Math.min(cellWidth, cellHeight) / 2.5}px Arial`;
 
   for (let row = 0; row < matrix.rows; row++) {
     for (let col = 0; col < matrix.cols; col++) {
@@ -63,40 +52,15 @@ function drawMatrix() {
       const y = row * cellHeight;
       const value = matrix.getValue(row, col);
 
-      // Asignación de colores por valor
-      if (value === 0) context.fillStyle = '#FFFFFF';       // Blanco
-      else if (value === 1) context.fillStyle = '#004679';  // Azul UCB
-      else if (value === 2) context.fillStyle = '#FFCF00';  // Amarillo UCB
-      else context.fillStyle = '#B0B0B0';                   // Gris neutro
-
-      // Dibuja el fondo de la celda
-      context.fillRect(x, y, cellWidth, cellHeight);
-
-      // Borde de celda
-      context.strokeStyle = '#5A6675';
-      context.lineWidth = 1;
-      context.strokeRect(x, y, cellWidth, cellHeight);
-
-      // Sombra ligera para resaltar
-      context.shadowColor = 'rgba(0, 0, 0, 0.1)';
-      context.shadowBlur = 3;
-
-      // Dibuja el valor en el centro
-      context.fillStyle = value === 0 ? '#555' : '#fff';
-      context.fillText(value, x + cellWidth / 2, y + cellHeight / 2);
+      context.strokeRect(x, y, cellWidth, cellHeight);//margen de la celda
+      context.fillText(value, x + cellWidth / 2, y + cellHeight / 2);//dibuja el valor
     }
   }
 }
 
-// Llena la matriz con valores aleatorios
+// Llena la matriz con valores aleatorios y la dibuja
 function fillMatrix() {
-  matrix.fillRandom(0, 9);
-  drawMatrix();
-}
-
-// Incremento por filas
-function fillIncrementRows() {
-  matrix.fillIncrementRows();
+  matrix.fillRandom(1, 100);
   drawMatrix();
 }
 
@@ -104,22 +68,52 @@ function fillIncrementRows() {
 function clearCanvas() {
   context.clearRect(0, 0, canvas.width, canvas.height);
 }
+  //anadir aca tu ejercicio--------------------------
+function ejercicioUnoBtnApp() {
+  const suma = matrix.ejercicio1(); // Guardamos el valor
+  drawMatrix();                     // Dibujamos la matriz
+  document.getElementById("resultadoTexto").textContent = "Resultado: " + suma; // Lo mostramos
+}
 
-// ----------------------------
-// FUNCIONES DE LOS EJERCICIOS
-// ----------------------------
-function fillExercise1() { matrix.fillExercise1(); drawMatrix(); }
-function fillExercise2() { matrix.fillExercise2(); drawMatrix(); }
-function fillExercise3() { matrix.fillExercise3(); drawMatrix(); }
-function fillExercise4() { matrix.fillExercise4(); drawMatrix(); }
-function fillExercise5() { matrix.fillExercise5(); drawMatrix(); }
-function fillExercise6() { matrix.fillExercise6(); drawMatrix(); }
-function fillExercise7() { matrix.fillExercise7(); drawMatrix(); }
-function fillExercise8() { matrix.fillExercise8(); drawMatrix(); }
-function fillExercise9() { matrix.fillExercise9(); drawMatrix(); }
-function fillExercise10() { matrix.fillExercise10(); drawMatrix(); }
-function fillExercise11() { matrix.fillExercise11(); drawMatrix(); }
+function ejercicioDosBtnApp() {
+    const resultado = matrix.ejercicio2(); // Llama a la función una sola vez
+    drawMatrix();                           // Dibuja la matriz
+    // Mostrar ambos valores en el mismo texto
+    document.getElementById("resultadoTexto").textContent =
+        "Máximo: " + resultado.max + " | Mínimo: " + resultado.min;
+}
+
+function ejercicioTresBtnApp() {
+  const prom = matrix.ejercicio3(); // Guardamos el valor
+  drawMatrix();                     // Dibujamos la matriz
+  document.getElementById("resultadoTexto").textContent = "Promedio: " + prom; // Lo mostramos
+}
+
+
+
+
+function ejercicioCincoBtnApp() {
+  matrix.ejercicio5(); // Guardamos el valor
+  drawMatrix();                     // Dibujamos la matriz
+  
+}
+
+function ejercicioSeisBtnApp() {
+  matrix.ejercicio6(); // Guardamos el valor
+  drawMatrix();                     // Dibujamos la matriz
+  
+}
+
+
+
+
+
+function ejercicioCatorceBtnApp() {
+  matrix.ejercicio14(); // Guardamos el valor
+  drawMatrix();                     // Dibujamos la matriz
+}
+
+
 
 // Ejecuta la inicialización
 initializeCanvas();
-

@@ -1,5 +1,5 @@
 :root {
-  --ucb-yellow: #FFCF00;  
+  --ucb-yellow: #FFCF00;
   --ucb-gray: #5A6675;
   --ucb-blue: #004679;
   --text-light: #ffffff;
@@ -35,15 +35,11 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  overflow-y: auto; /* permite hacer scroll si hay muchos botones */
 }
 
 .sidebar h2 {
   margin-top: 0;
   color: var(--ucb-yellow);
-  font-size: 1.1em;
-  border-bottom: 1px solid var(--ucb-yellow);
-  padding-bottom: 4px;
 }
 
 .sidebar button {
@@ -54,12 +50,6 @@ body {
   font-weight: bold;
   cursor: pointer;
   border-radius: 4px;
-  transition: all 0.2s ease;
-}
-
-.sidebar button:hover:not(:disabled) {
-  background-color: #ffd633;
-  transform: scale(1.02);
 }
 
 .sidebar button:disabled {
@@ -90,24 +80,6 @@ canvas {
   border: 2px solid var(--ucb-gray);
 }
 
-/* NUEVO: secciones más limpias dentro del panel lateral */
-.sidebar h2:nth-of-type(2) {
-  margin-top: 20px;
-}
-
-.sidebar::-webkit-scrollbar {
-  width: 8px;
-}
-
-.sidebar::-webkit-scrollbar-thumb {
-  background-color: var(--ucb-yellow);
-  border-radius: 4px;
-}
-
-.sidebar::-webkit-scrollbar-track {
-  background-color: #444;
-}
-
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
@@ -118,12 +90,6 @@ canvas {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    overflow-y: visible;
-  }
-
-  .sidebar button {
-    flex: 1 1 45%;
-    margin: 5px;
   }
 
   .canvas-area {

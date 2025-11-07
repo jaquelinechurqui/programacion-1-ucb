@@ -1095,43 +1095,72 @@ ejercicio80() {
   }
 
   // 82. Diamante centrado
-  ejercicio82() {
-    const n = this.rows;
-    const c = Math.floor(n / 2);
-    for (let i = 0; i < n; i++)
-      for (let j = 0; j < n; j++)
-        this.data[i][j] = (Math.abs(i - c) + Math.abs(j - c) <= c) ? 1 : 0;
-  }
-
-  // 83. Escalera diagonal
-  ejercicio83() {
-    const n = this.rows;
-    const m = this.cols;
-    for (let i = 0; i < n; i++)
-      for (let j = 0; j < m; j++)
-        this.data[i][j] = (i === j) ? 1 : 0;
-  }
-
-  // 84. Flecha apuntando hacia abajo
-  ejercicio84() {
-    const n = this.rows;
-    const c = Math.floor(n / 2);
-    for (let i = 0; i < n; i++)
-      for (let j = 0; j < n; j++)
-        this.data[i][j] = (j === c || (i === j && i <= c)) ? 1 : 0;
-  }
-
-  // 85. Reloj de arena
-  ejercicio85() {
+ejercicio82() {
     const n = this.rows;
     const c = Math.floor(n / 2);
     for (let i = 0; i < n; i++) {
-      for (let j = 0; j < n; j++) {
-        this.data[i][j] = (j >= i && j < n - i) ? 1 : 0;
-        if (i > c) this.data[i][j] = (j >= n - 1 - i && j <= i) ? 1 : this.data[i][j];
-      }
+        for (let j = 0; j < n; j++) {
+            if (Math.abs(i - c) + Math.abs(j - c) <= c) {
+                this.data[i][j] = 1;
+            } else {
+                this.data[i][j] = 0;
+            }
+        }
     }
-  }
+}
+
+// 83. Escalera diagonal
+ejercicio83() {
+    const n = this.rows;
+    const m = this.cols;
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j < m; j++) {
+            if (i === j) {
+                this.data[i][j] = 1;
+            } else {
+                this.data[i][j] = 0;
+            }
+        }
+    }
+}
+
+// 84. Flecha apuntando hacia abajo
+ejercicio84() {
+    const n = this.rows;
+    const c = Math.floor(n / 2);
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j < n; j++) {
+            if (j === c || (i === j && i <= c)) {
+                this.data[i][j] = 1;
+            } else {
+                this.data[i][j] = 0;
+            }
+        }
+    }
+}
+
+// 85. Reloj de arena
+ejercicio85() {
+    const n = this.rows;
+    const c = Math.floor(n / 2);
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j < n; j++) {
+            if (i <= c) {
+                if (j >= i && j < n - i) {
+                    this.data[i][j] = 1;
+                } else {
+                    this.data[i][j] = 0;
+                }
+            } else {
+                if (j >= n - 1 - i && j <= i) {
+                    this.data[i][j] = 1;
+                } else {
+                    this.data[i][j] = 0;
+                }
+            }
+        }
+    }
+}
 
   // 86. Espejo diagonal
   ejercicio86() {

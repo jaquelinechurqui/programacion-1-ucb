@@ -28,6 +28,45 @@ const ejercicioCuarentaSieteBtn = document.getElementById('ejercicioCuarentaSiet
 const ejercicioCuarentaOchoBtn = document.getElementById('ejercicioCuarentaOchoBtn');
 const ejercicioCuarentaNueveBtn = document.getElementById('ejercicioCuarentaNueveBtn');
 const ejercicioCincuentaBtn = document.getElementById('ejercicioCincuentaBtn');
+const ejercicioCincuentaUnoBtn = document.getElementById('ejercicioCincuentaUnoBtn');
+const ejercicioCincuentaDosBtn = document.getElementById('ejercicioCincuentaDosBtn');
+const ejercicioCincuentaTresBtn = document.getElementById('ejercicioCincuentaTresBtn');
+const ejercicioCincuentaCuatroBtn = document.getElementById('ejercicioCincuentaCuatroBtn');
+const ejercicioCincuentaCincoBtn = document.getElementById('ejercicioCincuentaCincoBtn');
+const ejercicioCincuentaSeisBtn = document.getElementById('ejercicioCincuentaSeisBtn');
+const ejercicioCincuentaSieteBtn = document.getElementById('ejercicioCincuentaSieteBtn');
+const ejercicioCincuentaOchoBtn = document.getElementById('ejercicioCincuentaOchoBtn');
+const ejercicioCincuentaNueveBtn = document.getElementById('ejercicioCincuentaNueveBtn');
+const ejercicioSesentaBtn = document.getElementById('ejercicioSesentaBtn');
+const ejercicioSesentaUnoBtn = document.getElementById('ejercicioSesentaUnoBtn');
+const ejercicioSesentaDosBtn = document.getElementById('ejercicioSesentaDosBtn');
+const ejercicioSesentaTresBtn = document.getElementById('ejercicioSesentaTresBtn');
+const ejercicioSesentaCuatroBtn = document.getElementById('ejercicioSesentaCuatroBtn');
+const ejercicioSesentaCincoBtn = document.getElementById('ejercicioSesentaCincoBtn');
+const ejercicioSesentaSeisBtn = document.getElementById('ejercicioSesentaSeisBtn');
+const ejercicioSesentaSieteBtn = document.getElementById('ejercicioSesentaSieteBtn');
+const ejercicioSesentaOchoBtn = document.getElementById('ejercicioSesentaOchoBtn');
+const ejercicioSesentaNueveBtn = document.getElementById('ejercicioSesentaNueveBtn');
+const ejercicioSetentaBtn = document.getElementById('ejercicioSetentaBtn');
+const ejercicioSetentaUnoBtn = document.getElementById('ejercicioSetentaUnoBtn');
+const ejercicioSetentaDosBtn = document.getElementById('ejercicioSetentaDosBtn');
+const ejercicioSetentaTresBtn = document.getElementById('ejercicioSetentaTresBtn');
+const ejercicioSetentaCuatroBtn = document.getElementById('ejercicioSetentaCuatroBtn');
+const ejercicioSetentaCincoBtn = document.getElementById('ejercicioSetentaCincoBtn');
+const ejercicioSetentaSeisBtn = document.getElementById('ejercicioSetentaSeisBtn');
+const ejercicioSetentaSieteBtn = document.getElementById('ejercicioSetentaSieteBtn');
+const ejercicioSetentaOchoBtn = document.getElementById('ejercicioSetentaOchoBtn');
+const ejercicioSetentaNueveBtn = document.getElementById('ejercicioSetentaNueveBtn');
+const ejercicioOchentaBtn = document.getElementById('ejercicioOchentaBtn');
+const ejercicioOchentaUnoBtn = document.getElementById('ejercicioOchentaUnoBtn');
+const ejercicioOchentaDosBtn = document.getElementById('ejercicioOchentaDosBtn');
+const ejercicioOchentaTresBtn = document.getElementById('ejercicioOchentaTresBtn');
+const ejercicioOchentaCuatroBtn = document.getElementById('ejercicioOchentaCuatroBtn');
+const ejercicioOchentaCincoBtn = document.getElementById('ejercicioOchentaCincoBtn');
+const ejercicioOchentaSeisBtn = document.getElementById('ejercicioOchentaSeisBtn');
+const ejercicioOchentaSieteBtn = document.getElementById('ejercicioOchentaSieteBtn');
+const ejercicioOchentaOchoBtn = document.getElementById('ejercicioOchentaOchoBtn');
+
 
 // Contexto de dibujo
 const context = canvas.getContext('2d');
@@ -67,6 +106,46 @@ ejercicioCuarentaSieteBtn.addEventListener('click', ejercicioCuarentaSieteBtnApp
 ejercicioCuarentaOchoBtn.addEventListener('click', ejercicioCuarentaOchoBtnApp);
 ejercicioCuarentaNueveBtn.addEventListener('click', ejercicioCuarentaNueveBtnApp);
 ejercicioCincuentaBtn.addEventListener('click', ejercicioCincuentaBtnApp);
+ejercicioCincuentaUnoBtn.addEventListener('click', ejercicioCincuentaUnoBtnApp);
+ejercicioCincuentaDosBtn.addEventListener('click', ejercicioCincuentaDosBtnApp);
+ejercicioCincuentaTresBtn.addEventListener('click', ejercicioCincuentaTresBtnApp);
+ejercicioCincuentaCuatroBtn.addEventListener('click', ejercicioCincuentaCuatroBtnApp);
+ejercicioCincuentaCincoBtn.addEventListener('click', ejercicioCincuentaCincoBtnApp);
+ejercicioCincuentaSeisBtn.addEventListener('click', ejercicioCincuentaSeisBtnApp);
+ejercicioCincuentaSieteBtn.addEventListener('click', ejercicioCincuentaSieteBtnApp);
+ejercicioCincuentaOchoBtn.addEventListener('click', ejercicioCincuentaOchoBtnApp);
+ejercicioCincuentaNueveBtn.addEventListener('click', ejercicioCincuentaNueveBtnApp);
+ejercicioSesentaBtn.addEventListener('click', ejercicioSesentaBtnApp);
+ejercicioSesentaUnoBtn.addEventListener('click', ejercicioSesentaUnoBtnApp);
+ejercicioSesentaDosBtn.addEventListener('click', ejercicioSesentaDosBtnApp);
+ejercicioSesentaTresBtn.addEventListener('click', ejercicioSesentaTresBtnApp);
+ejercicioSesentaCuatroBtn.addEventListener('click', ejercicioSesentaCuatroBtnApp);
+ejercicioSesentaCincoBtn.addEventListener('click', ejercicioSesentaCincoBtnApp);
+ejercicioSesentaSeisBtn.addEventListener('click', ejercicioSesentaSeisBtnApp);
+ejercicioSesentaSieteBtn.addEventListener('click', ejercicioSesentaSieteBtnApp);
+ejercicioSesentaOchoBtn.addEventListener('click', ejercicioSesentaOchoBtnApp);
+ejercicioSesentaNueveBtn.addEventListener('click', ejercicioSesentaNueveBtnApp);
+ejercicioSetentaBtn.addEventListener('click', ejercicioSetentaBtnApp);
+ejercicioSetentaUnoBtn.addEventListener('click', ejercicioSetentaUnoBtnApp);
+ejercicioSetentaDosBtn.addEventListener('click', ejercicioSetentaDosBtnApp);
+ejercicioSetentaTresBtn.addEventListener('click', ejercicioSetentaTresBtnApp);
+ejercicioSetentaCuatroBtn.addEventListener('click', ejercicioSetentaCuatroBtnApp);
+ejercicioSetentaCincoBtn.addEventListener('click', ejercicioSetentaCincoBtnApp);
+ejercicioSetentaSeisBtn.addEventListener('click', ejercicioSetentaSeisBtnApp);
+ejercicioSetentaSieteBtn.addEventListener('click', ejercicioSetentaSieteBtnApp);
+ejercicioSetentaOchoBtn.addEventListener('click', ejercicioSetentaOchoBtnApp);
+ejercicioSetentaNueveBtn.addEventListener('click', ejercicioSetentaNueveBtnApp);
+ejercicioOchentaBtn.addEventListener('click', ejercicioOchentaBtnApp);
+ejercicioOchentaUnoBtn.addEventListener('click', ejercicioOchentaUnoBtnApp);
+ejercicioOchentaDosBtn.addEventListener('click', ejercicioOchentaDosBtnApp);
+ejercicioOchentaTresBtn.addEventListener('click', ejercicioOchentaTresBtnApp);
+ejercicioOchentaCuatroBtn.addEventListener('click', ejercicioOchentaCuatroBtnApp);
+ejercicioOchentaCincoBtn.addEventListener('click', ejercicioOchentaCincoBtnApp);
+ejercicioOchentaSeisBtn.addEventListener('click', ejercicioOchentaSeisBtnApp);
+ejercicioOchentaSieteBtn.addEventListener('click', ejercicioOchentaSieteBtnApp);
+ejercicioOchentaOchoBtn.addEventListener('click', ejercicioOchentaOchoBtnApp);
+
+
 
   
   
@@ -200,12 +279,15 @@ function ejercicioCuarentaBtnApp() {
   drawMatrix(matrix);
 
   let texto = "Filas duplicadas:\n";
-  if (resultado.length === 0) texto += "No hay filas duplicadas";
-  else {
-    for (let i = 0; i < resultado.length; i++) texto += resultado[i] + "\n";
+if (resultado.length === 0) texto += "No hay filas duplicadas";
+else {
+  for (let i = 0; i < resultado.length; i++) {
+    texto += resultado[i] + "\n"; // cada fila duplicada en nueva línea
   }
-  document.getElementById("resultadoTexto").textContent = texto;
 }
+document.getElementById("resultadoTexto").textContent = texto;
+}
+
 
 function ejercicioCuarentaUnoBtnApp() {
   matrix.fillRandom(1, 9);
@@ -226,7 +308,7 @@ function ejercicioCuarentaDosBtnApp() {
   drawMatrix(matrix);
 
   document.getElementById("resultadoTexto").textContent =
-    "¿Es simétrica verticalmente?: " + (esSimetrica ? "Sí" : "No");
+    "¿Es simétrica verticalmente?: " + (esSimetrica ? "True" : "False");
 }
 
 function ejercicioCuarentaTresBtnApp() {
@@ -235,11 +317,10 @@ function ejercicioCuarentaTresBtnApp() {
   drawMatrix(matrix);
 
   document.getElementById("resultadoTexto").textContent =
-    "¿Es simétrica horizontalmente?: " + (esSimetrica ? "Sí" : "No");
+    "¿Es simétrica horizontalmente?: " + (esSimetrica ? "True" : "False");
 }
 
 function ejercicioCuarentaCuatroBtnApp() {
-  matrix.fillRandom(1, 9);
   const esSimetrica = matrix.ejercicio44(); // true o false
   drawMatrix(matrix);
 
@@ -280,6 +361,261 @@ function ejercicioCincuentaBtnApp() {
   matrix.ejercicio50(); // genera matriz con patrón triangular
   drawMatrix(matrix);
 }
+
+function ejercicioCincuentaUnoBtnApp() {
+  matrix.ejercicio51();
+  drawMatrix(matrix);
+  
+}
+function ejercicioCincuentaDosBtnApp() {
+  matrix.ejercicio52();
+  drawMatrix(matrix);
+  
+}
+function ejercicioCincuentaTresBtnApp() {
+  matrix.ejercicio53();
+  drawMatrix(matrix);
+  
+}
+function ejercicioCincuentaCuatroBtnApp() {
+  matrix.ejercicio54();
+  drawMatrix(matrix);
+  
+}
+ 
+function ejercicioCincuentaCincoBtnApp() {
+  matrix.ejercicio55();
+  drawMatrix(matrix);
+  document.getElementById("resultadoTexto").textContent = "Matriz generada con números primos.";
+}
+
+function ejercicioCincuentaSeisBtnApp() {
+  matrix.fillRandom(1, 10);
+  matrix.ejercicio56();
+  drawMatrix(matrix);
+  document.getElementById("resultadoTexto").textContent = "Matriz multiplicada por escalar (k=3).";
+}
+
+function ejercicioCincuentaSieteBtnApp() {
+  const matrixB = new Matrix(matrix.rows, matrix.cols);
+  matrix.fillRandom(1, 50);
+  matrixB.fillRandom(1, 50);
+  const result = matrix.ejercicio57(matrixB);
+  drawMatrix({ data: result });
+  document.getElementById("resultadoTexto").textContent = "Suma de dos matrices (A + B).";
+}
+
+function ejercicioCincuentaOchoBtnApp() {
+  const matrixB = new Matrix(matrix.cols, 5);
+  matrix.fillRandom(1, 10);
+  matrixB.fillRandom(1, 10);
+  const result = matrix.ejercicio58(matrixB);
+  drawMatrix({ data: result });
+  document.getElementById("resultadoTexto").textContent = "Multiplicación de matrices (A × B).";
+}
+
+function ejercicioCincuentaNueveBtnApp() {
+  const esIdentidad = matrix.ejercicio59();
+  drawMatrix(matrix);
+  document.getElementById("resultadoTexto").textContent = "¿Es matriz identidad?: " + (esIdentidad ? "Sí" : "No");
+}
+
+function ejercicioSesentaBtnApp() {
+  const esDiagonal = matrix.ejercicio60();
+  drawMatrix(matrix);
+  document.getElementById("resultadoTexto").textContent = "¿Es matriz diagonal?: " + (esDiagonal ? "Sí" : "No");
+}
+
+function ejercicioSesentaUnoBtnApp() {
+  const esNula = matrix.ejercicio61();
+  drawMatrix(matrix);
+  document.getElementById("resultadoTexto").textContent = "¿Es matriz nula?: " + (esNula ? "Sí" : "No");
+}
+
+function ejercicioSesentaDosBtnApp() {
+  const esOrtogonal = matrix.ejercicio62();
+  drawMatrix(matrix);
+  document.getElementById("resultadoTexto").textContent = "¿Es matriz ortogonal?: " + (esOrtogonal ? "Sí" : "No");
+}
+
+function ejercicioSesentaTresBtnApp() {
+  matrix.ejercicio63();
+  drawMatrix(matrix);
+  document.getElementById("resultadoTexto").textContent = "Matriz normalizada (valores entre 0 y 1).";
+}
+
+function ejercicioSesentaCuatroBtnApp() {
+  const umbral = 100;
+  matrix.ejercicio64(umbral);
+  drawMatrix(matrix);
+  document.getElementById("resultadoTexto").textContent = "Umbral aplicado (≥100 → 1, <100 → 0).";
+}
+
+function ejercicioSesentaCincoBtnApp() {
+  matrix.ejercicio65();
+  drawMatrix(matrix);
+  document.getElementById("resultadoTexto").textContent = "Máscara booleana aplicada a la matriz.";
+}
+function ejercicioSesentaSeisBtnApp() {
+  const matrix = new Matrix(10, 10, 0);
+  matrix.fillRandom(1, 100);
+
+  // Extraer directamente la submatriz central 8×8
+  const sub = matrix.ejercicio66(8, 8);
+
+  // Mostrar solo la submatriz
+  drawMatrix(sub);
+  document.getElementById("resultadoTexto").textContent = "Submatriz central 8×8 extraída";
+}
+
+
+
+function ejercicioSesentaSieteBtnApp() {
+  const borde = matrix.ejercicio67();
+  drawMatrix(matrix);
+  document.getElementById("resultadoTexto").textContent = "Borde extraído: [" + borde.join(", ") + "]";
+}
+
+function ejercicioSesentaOchoBtnApp() {
+  const { diagPrincipal, diagSecundaria } = matrix.ejercicio68();
+  drawMatrix(matrix);
+  document.getElementById("resultadoTexto").textContent =
+    "Diagonal principal: [" + diagPrincipal.join(", ") + "] | Diagonal secundaria: [" + diagSecundaria.join(", ") + "]";
+}
+
+function ejercicioSesentaNueveBtnApp() {
+  const esSimetrica = matrix.ejercicio69();
+  drawMatrix(matrix);
+  document.getElementById("resultadoTexto").textContent = "¿Es matriz simétrica?: " + (esSimetrica ? "Sí" : "No");
+}
+
+function ejercicioSetentaBtnApp() {
+  matrix.ejercicio70();
+  drawMatrix(matrix);
+  document.getElementById("resultadoTexto").textContent = "Matriz triangular superior generada.";
+}
+
+function ejercicioSetentaUnoBtnApp() {
+  matrix.ejercicio71();
+  drawMatrix(matrix);
+  document.getElementById("resultadoTexto").textContent = "Matriz triangular inferior generada.";
+}
+
+function ejercicioSetentaDosBtnApp() {
+  matrix.ejercicio72();
+  drawMatrix(matrix);
+  document.getElementById("resultadoTexto").textContent = "Matriz con patrón de cruz generada.";
+}
+
+function ejercicioSetentaTresBtnApp() {
+  matrix.ejercicio73();
+  drawMatrix(matrix);
+  document.getElementById("resultadoTexto").textContent = "Matriz con patrón de X generada.";
+}
+
+function ejercicioSetentaCuatroBtnApp() {
+  matrix.ejercicio74();
+  drawMatrix(matrix);
+  document.getElementById("resultadoTexto").textContent = "Matriz con borde alternado generada.";
+}
+
+function ejercicioSetentaCincoBtnApp() {
+  matrix.ejercicio75();
+  drawMatrix(matrix);
+  document.getElementById("resultadoTexto").textContent = "Matriz con patrón de espina de pescado generada.";
+}
+
+function ejercicioSetentaSeisBtnApp() {
+  matrix.ejercicio76();
+  drawMatrix(matrix);
+  document.getElementById("resultadoTexto").textContent = "Matriz con patrón de serpiente generada.";
+}
+
+function ejercicioSetentaSieteBtnApp() {
+  matrix.ejercicio77();
+  drawMatrix(matrix);
+  document.getElementById("resultadoTexto").textContent = "Matriz con columnas alternadas generada.";
+}
+
+function ejercicioSetentaOchoBtnApp() {
+  matrix.ejercicio78();
+  drawMatrix(matrix);
+  document.getElementById("resultadoTexto").textContent = "Matriz con espiral inversa generada.";
+}
+
+function ejercicioSetentaNueveBtnApp() {
+  matrix.ejercicio79();
+  drawMatrix(matrix);
+  document.getElementById("resultadoTexto").textContent = "Matriz con patrón de zigzag diagonal generada.";
+}
+
+function ejercicioOchentaBtnApp() {
+  matrix.ejercicio80();
+  drawMatrix(matrix);
+  document.getElementById("resultadoTexto").textContent = "Matriz con capas concéntricas generada.";
+}
+
+function ejercicioOchentaUnoBtnApp() {
+    matrix.ejercicio81();
+    drawMatrix(matrix);
+    document.getElementById("resultadoTexto").textContent = "Pirámide numérica generada.";
+}
+
+function ejercicioOchentaDosBtnApp() {
+    matrix.ejercicio82();
+    drawMatrix(matrix);
+    document.getElementById("resultadoTexto").textContent = "Diamante centrado generado.";
+}
+
+function ejercicioOchentaTresBtnApp() {
+    matrix.ejercicio83();
+    drawMatrix(matrix);
+    document.getElementById("resultadoTexto").textContent = "Escalera diagonal generada.";
+}
+
+function ejercicioOchentaCuatroBtnApp() {
+    matrix.ejercicio84();
+    drawMatrix(matrix);
+    document.getElementById("resultadoTexto").textContent = "Flecha apuntando hacia abajo generada.";
+}
+
+function ejercicioOchentaCincoBtnApp() {
+    matrix.ejercicio85();
+    drawMatrix(matrix);
+    document.getElementById("resultadoTexto").textContent = "Reloj de arena generado.";
+}
+
+let ejercicio86MostradaOriginal = true;
+
+function ejercicioOchentaSeisBtnApp() {
+    if (ejercicio86MostradaOriginal) {
+        matrix.fillRandom(1, 9);
+        drawMatrix(matrix);
+        document.getElementById("resultadoTexto").textContent = "Matriz original.";
+        ejercicio86MostradaOriginal = false;
+    } else {
+        matrix.ejercicio86();
+        drawMatrix(matrix);
+        document.getElementById("resultadoTexto").textContent = "Matriz reflejada respecto a la diagonal principal.";
+        ejercicio86MostradaOriginal = true;
+    }
+}
+
+
+function ejercicioOchentaSieteBtnApp() {
+    matrix.ejercicio87();
+    drawMatrix(matrix);
+    document.getElementById("resultadoTexto").textContent = "Serpiente vertical generada.";
+}
+
+function ejercicioOchentaOchoBtnApp() {
+    matrix.fillRandom(1, 9);
+    drawMatrix(matrix);
+    matrix.ejercicio88();
+    drawMatrix(matrix);
+    document.getElementById("resultadoTexto").textContent = "Columnas espejo generadas.";
+}
+
 
 
 

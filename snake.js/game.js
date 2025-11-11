@@ -4,213 +4,320 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
-// Tamaño de cada celda
+// Grid
 const box = 20;
+const GRID_W = 40;
+const GRID_H = 25;
+canvas.width = GRID_W * box;
+canvas.height = GRID_H * box;
 
-// Variables del juego
+// Estado
 let snake = [];
 let direction = "RIGHT";
 let food = {};
 let score = 0;
 let gameInterval = null;
-let speed = 150;
+let speed = 3000; // inicial, nivel 1 super lento
 
 let currentFruitColor = "red";
 let currentFruitValue = 10;
 let currentObstacles = [];
-
 let currentLevelNumber = 1;
+let targetPoints = 50;
 
-// ===== Iniciar el juego =====
-function startGame(levelData) {
-  if (!levelData) return;
+let allowSilver = false;
+let allowGold = false;
+let specialPos = null;
+let specialValue = 0;
+let specialColor = "";
+let specialActive = false;
+let specialTimer = null;
+
+// ===== Imágenes de fondo por nivel =====
+const levelBackgroundImages = {
+  1: new Image(),
+  2: new Image(),
+  3: new Image()
+};
+
+levelBackgroundImages[1].src = "assets/1.png.png";
+levelBackgroundImages[2].src = "assets/2.png.png";
+levelBackgroundImages[3].src = "assets/3.png.png";
+
+
+// Obstáculos por nivel
+const obstaclesByLevel = {
+  2: [{x:10,y:10},{x:11,y:10},{x:12,y:10},{x:10,y:11},{x:10,y:12}],
+  3: [{x:5,y:5},{x:6,y:5},{x:7,y:5},{x:5,y:6},{x:5,y:7},{x:20,y:15},{x:21,y:15},{x:22,y:15}]
+};
+
+// Nombres y fondos por nivel
+const levelNames = ["Jardín","Casa","Cárcel"];
+const levelBackgrounds = ["#a2d149","#8eb8ff","#660000"];
+
+// ===== Inicio del juego =====
+function startGame(levelData){
+  playButtonSound();
+  if(!levelData) return;
 
   currentLevelNumber = levelData.number;
-  snake = [{
-    x: Math.floor(canvas.width / 2 / box) * box,
-    y: Math.floor(canvas.height / 2 / box) * box
-  }];
+
+  snake = [{ x: Math.floor(GRID_W/2)*box, y: Math.floor(GRID_H/2)*box }];
   direction = "RIGHT";
   score = 0;
-  currentFruitColor = levelData.fruitColor;
-  currentFruitValue = levelData.fruitValue;
-  currentObstacles = levelData.obstacles;
+
+  currentFruitColor = "red";
+  currentFruitValue = 10;
+  currentObstacles = obstaclesByLevel[currentLevelNumber] || [];
   speed = levelData.speed;
+  targetPoints = levelData.targetPoints;
 
-  food = randomFood();
+  allowSilver = !!levelData.allowSilver;
+  allowGold = !!levelData.allowGold;
 
-  // Mostrar canvas
-  canvas.style.display = "block";
+  stopSpecial();
+  if(allowSilver || allowGold) spawnSpecial();
 
-  // Limpiar intervalo anterior
+  food = randomFreeCell();
+
   clearInterval(gameInterval);
   gameInterval = setInterval(drawGame, speed);
 
-  // Evento de teclado
   document.onkeydown = changeDirection;
-
-  // Mostrar puntaje
-  document.getElementById("score").textContent = `Puntaje: ${score}`;
 }
 
-// ===== Generar comida aleatoria =====
-function randomFood() {
-  let newFood;
-  let valid = false;
-
-  while (!valid) {
-    newFood = {
-      x: Math.floor(Math.random() * (canvas.width / box)) * box,
-      y: Math.floor(Math.random() * (canvas.height / box)) * box
-    };
-
-    if (!snake.some(s => s.x === newFood.x && s.y === newFood.y) &&
-        !currentObstacles.some(o => o.x * box === newFood.x && o.y * box === newFood.y)) {
-      valid = true;
-    }
-  }
-
-  return newFood;
+// ===== Utilidades =====
+function randomFreeCell(){
+  let c;
+  do{
+    c = { x: Math.floor(Math.random()*GRID_W)*box, y: Math.floor(Math.random()*GRID_H)*box };
+  }while(
+    snake.some(s=>s.x===c.x && s.y===c.y) ||
+    currentObstacles.some(o=>o.x*box===c.x && o.y*box===c.y) ||
+    (specialActive && specialPos && specialPos.x===c.x && specialPos.y===c.y)
+  );
+  return c;
 }
 
-// ===== Cambiar dirección de la serpiente =====
-function changeDirection(event) {
-  if (event.key === "ArrowLeft" && direction !== "RIGHT") direction = "LEFT";
-  else if (event.key === "ArrowUp" && direction !== "DOWN") direction = "UP";
-  else if (event.key === "ArrowRight" && direction !== "LEFT") direction = "RIGHT";
-  else if (event.key === "ArrowDown" && direction !== "UP") direction = "DOWN";
+function changeDirection(e){
+  if(e.key==="ArrowLeft" && direction!=="RIGHT") direction="LEFT";
+  else if(e.key==="ArrowUp" && direction!=="DOWN") direction="UP";
+  else if(e.key==="ArrowRight" && direction!=="LEFT") direction="RIGHT";
+  else if(e.key==="ArrowDown" && direction!=="UP") direction="DOWN";
+  e.preventDefault();
 }
 
-// ===== Dibujar juego =====
-function drawGame() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+// ===== Bucle principal =====
+function drawGame(){
+  // Dibujar imagen de fondo del nivel
+const bgImg = levelBackgroundImages[currentLevelNumber];
+if(bgImg.complete){ // se asegura de que la imagen esté cargada
+    ctx.drawImage(bgImg, 0, 0, canvas.width, canvas.height);
+} else {
+    // Si la imagen no se cargó aún, usar color de respaldo
+    ctx.fillStyle = levelBackgrounds[currentLevelNumber-1];
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+}
+
 
   // Dibujar obstáculos
-  currentObstacles.forEach(obs => {
-    ctx.fillStyle = "white";
-    ctx.fillRect(obs.x * box, obs.y * box, box, box);
-  });
+  ctx.fillStyle="#555";
+  currentObstacles.forEach(obs=>ctx.fillRect(obs.x*box, obs.y*box, box, box));
 
-  // Dibujar comida
-  //ctx.fillStyle = currentFruitColor;
-  //ctx.fillRect(food.x, food.y, box, box);
-
-  // Dibujar serpiente
-  //snake.forEach((seg, idx) => {
-    //ctx.fillStyle = idx === 0 ? "green" : "lightgreen";
-    //ctx.fillRect(seg.x, seg.y, box, box);
-  //});
-
-  // Nueva posición de la cabeza
+  // Calcular nueva cabeza
   let headX = snake[0].x;
   let headY = snake[0].y;
+  if(direction==="LEFT") headX -= box;
+  if(direction==="RIGHT") headX += box;
+  if(direction==="UP") headY -= box;
+  if(direction==="DOWN") headY += box;
 
-  if (direction === "LEFT") headX -= box;
-  else if (direction === "RIGHT") headX += box;
-  else if (direction === "UP") headY -= box;
-  else if (direction === "DOWN") headY += box;
-
-  // Comer comida
-  if (headX === food.x && headY === food.y) {
-    score += currentFruitValue;
-    food = randomFood();
-  } else {
-    snake.pop();
-  }
-
-  const newHead = { x: headX, y: headY };
+  const newHead = {x:headX, y:headY};
 
   // Colisiones
-  if (headX < 0 || headY < 0 || headX >= canvas.width || headY >= canvas.height ||
-      snakeCollision(newHead) || obstacleCollision(newHead)) {
-    endGame();
+  if(headX<0 || headY<0 || headX>=canvas.width || headY>=canvas.height || snakeCollision(newHead) || obstacleCollision(newHead)){
+    endGame(false); // ❌ perdió
     return;
   }
 
-  snake.unshift(newHead);
+  let grew=false;
 
-  // Mostrar puntaje
-  document.getElementById("score").textContent = `Puntaje: ${score}`;
-}
-
-// ===== Colisión con cuerpo =====
-function snakeCollision(head) {
-  return snake.some(seg => seg.x === head.x && seg.y === head.y);
-}
-
-// ===== Colisión con obstáculos =====
-function obstacleCollision(head) {
-  return currentObstacles.some(obs => head.x === obs.x * box && head.y === obs.y * box);
-}
-
-// ===== Fin del juego =====
-function endGame() {
-  clearInterval(gameInterval);
-
-  playGameOverSound(); // 🔊 sonido al terminar el juego
-
-  alert(`🐍 Fin del juego, ${getPlayerName()}!\nPuntaje: ${score}\nNivel alcanzado: ${currentLevelNumber}`);
-
-  // Desbloquear siguiente nivel si aplica
-  if (score >= 50 && currentLevelNumber < 5) { // puntaje mínimo para desbloquear
-    unlockPlayerLevel(currentLevelNumber);
-    unlockNextLevel(currentLevelNumber); // levels.js
-    alert(`¡Desbloqueaste el Nivel ${currentLevelNumber + 1}! 🎉`);
+  // Comer especial
+  if(specialActive && specialPos && headX===specialPos.x && headY===specialPos.y){
+    score += specialValue;
+    grew=true;
+    removeSpecial();
+    playEatSound();
   }
 
-  // Volver al menú
-  canvas.style.display = "none";
-  document.getElementById("game-screen").style.display = "none";
-  document.getElementById("menu-screen").style.display = "block";
+  // Comer fruta normal
+  if(headX===food.x && headY===food.y){
+    score += currentFruitValue;
+    grew=true;
+    food=randomFreeCell();
+    playEatSound();
+  }
 
-  // Actualizar botones
-  if (typeof updateLevelButtons === "function") updateLevelButtons();
-}
+  if(!grew) snake.pop();
+  snake.unshift(newHead);
 
-// ===== 🐍 VIBORITA ANIMADA VISUAL =====
+  // Dibujar fruta normal
+  ctx.fillStyle=currentFruitColor;
+  ctx.fillRect(food.x, food.y, box, box);
 
-// Contenedor del juego
-const gameContainer = document.getElementById("game-container");
-let snakeElements = [];
-let foodElement = null;
+  // Dibujar especial
+  if(specialActive && specialPos){
+    ctx.fillStyle=specialColor;
+    ctx.fillRect(specialPos.x, specialPos.y, box, box);
+  }
 
-// Dibujar segmentos visuales de la víbora
-function renderSnakeVisual() {
-  // Limpiar segmentos anteriores
-  snakeElements.forEach(el => el.remove());
-  snakeElements = [];
-
-  // Crear nuevos segmentos
-  snake.forEach((seg, index) => {
-    const segment = document.createElement("div");
-    segment.classList.add("snake-segment");
-    if (index === 0) segment.classList.add("snake-head");
-    segment.style.left = `${seg.x}px`;
-    segment.style.top = `${seg.y}px`;
-    segment.style.position = "absolute";
-    segment.style.setProperty("--i", index);
-    gameContainer.appendChild(segment);
-    snakeElements.push(segment);
+  // Dibujar serpiente
+  snake.forEach((seg,i)=>{
+    ctx.fillStyle=i===0?"green":"lightgreen";
+    ctx.fillRect(seg.x, seg.y, box, box);
   });
 
-  // Redibujar fruta visual
-  renderFoodVisual();
+  drawUI();
+
+  // Meta alcanzada
+  if(score >= targetPoints){
+    clearInterval(gameInterval);
+    stopSpecial();
+    endGame(true); // ✅ pasó de nivel
+  }
 }
 
-// Dibujar fruta animada
-function renderFoodVisual() {
-  if (foodElement) foodElement.remove();
-  foodElement = document.createElement("div");
-  foodElement.classList.add("apple");
-  foodElement.style.left = `${food.x}px`;
-  foodElement.style.top = `${food.y}px`;
-  foodElement.style.position = "absolute";
-  gameContainer.appendChild(foodElement);
+// ===== Colisiones =====
+function snakeCollision(head){ return snake.some((seg,i)=>i>0 && seg.x===head.x && seg.y===head.y);}
+function obstacleCollision(head){ return currentObstacles.some(obs=>head.x===obs.x*box && head.y===obs.y*box);}
+
+// ===== UI fuera del canvas =====
+function drawUI(){
+    const now = new Date();
+    const timeStr = now.toLocaleTimeString();
+    const dateStr = now.toLocaleDateString();
+
+    // Actualizar HUD externo (HTML)
+    const scoreUI = document.getElementById("score-ui");
+    const playerUI = document.getElementById("player-ui");
+
+    if(scoreUI) scoreUI.textContent = `Puntaje: ${score}`;
+    if(playerUI) {
+        if(playerName){
+            playerUI.textContent = `${playerName} - ${levelNames[currentLevelNumber-1]} - ${dateStr} ${timeStr}`;
+        } else {
+            playerUI.textContent = `${dateStr} ${timeStr}`;
+        }
+    }
+
+    // Si quieres mantener también el canvas, puedes comentar las siguientes líneas
+    /*
+    ctx.font = "16px Arial";
+    ctx.textAlign = "left";
+    ctx.textBaseline = "top";
+    ctx.fillStyle = "#fff";
+    ctx.fillText(`Puntaje: ${score}`, 10, 10);
+
+    ctx.textAlign = "right";
+    ctx.textBaseline = "top";
+    ctx.fillStyle = "#fff";
+
+    let rightText = playerName ? 
+        `${playerName} - ${levelNames[currentLevelNumber-1]} - ${dateStr} ${timeStr}` : 
+        `${dateStr} ${timeStr}`;
+
+    ctx.fillText(rightText, canvas.width - 10, 10);
+    */
 }
 
-// Interceptar el bucle del juego para renderizar animaciones visuales
-const originalDrawGame = drawGame;
-drawGame = function() {
-  originalDrawGame();  // mantiene toda la lógica original
-  renderSnakeVisual(); // añade la víbora visual animada
-};
+// ===== Especiales (opcional: desaparecer después de X seg) =====
+function spawnSpecial(){
+  if(specialActive) return;
+  specialPos = randomFreeCell();
+  if(currentLevelNumber===2){ specialColor="silver"; specialValue=20; }
+  else if(currentLevelNumber===3){ specialColor="gold"; specialValue=30; }
+  else return;
+  specialActive=true;
+
+  // Desaparecer después de 10 seg
+  specialTimer = setTimeout(removeSpecial, 10000);
+}
+
+
+
+
+// ===== Mensaje central =====
+function showCenteredMessage(text, color="#fff") {
+    const padding = 15;
+    const lineHeight = 20;
+    const fontSize = 16;
+    const lines = text.split("\n");
+
+    ctx.font = `${fontSize}px Arial`;
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+
+    // Ancho máximo del texto
+    let maxWidth = 0;
+    lines.forEach(line => {
+        const width = ctx.measureText(line).width;
+        if(width > maxWidth) maxWidth = width;
+    });
+
+    const rectWidth = maxWidth + padding * 2;
+    const rectHeight = lines.length * lineHeight + padding * 2;
+    const rectX = canvas.width/2 - rectWidth/2;
+    const rectY = canvas.height/2 - rectHeight/2;
+
+    // Fondo negro semi-transparente
+    ctx.fillStyle = "rgba(0,0,0,0.7)";
+    ctx.fillRect(rectX, rectY, rectWidth, rectHeight);
+
+    // Borde
+    ctx.strokeStyle = "rgba(255,255,255,0.8)";
+    ctx.lineWidth = 2;
+    ctx.strokeRect(rectX, rectY, rectWidth, rectHeight);
+
+    // Texto
+    ctx.fillStyle = color;
+    lines.forEach((line,i)=>{
+        const y = rectY + padding + i*lineHeight + lineHeight/2;
+        ctx.fillText(line, canvas.width/2, y);
+    });
+}
+
+// ===== Fin del juego / siguiente nivel =====
+function endGame(passed=false){
+  clearInterval(gameInterval);
+  stopSpecial();
+
+  if(!passed) playGameOverSound(); // sonido si pierde
+
+  let msg = passed 
+    ? `🎉 ¡${playerName} clasificaste al siguiente nivel!\nPuntaje: ${score}`
+    : `💀 Fin del juego, ${playerName}!\nPuntaje: ${score}`;
+
+  showCenteredMessage(msg);
+
+  // Esperar y volver al menú
+  setTimeout(()=>{
+    document.getElementById("game-screen").classList.remove("active");
+    document.getElementById("menu-screen").classList.add("active");
+    renderLevelButtons && renderLevelButtons();
+  },2000);
+
+  // 🔓 Desbloqueo del siguiente nivel
+  if(passed) unlockPlayerLevel && unlockPlayerLevel(currentLevelNumber);
+}
+
+// ===== Especiales =====
+function spawnSpecial(){
+  if(specialActive) return;
+  specialPos = randomFreeCell();
+  if(currentLevelNumber===2){ specialColor="silver"; specialValue=20; }
+  else if(currentLevelNumber===3){ specialColor="gold"; specialValue=30; }
+  else return;
+  specialActive=true;
+}
+function stopSpecial(){ if(specialTimer) clearInterval(specialTimer); specialTimer=null; removeSpecial();}
+function removeSpecial(){ specialActive=false; specialPos=null;}

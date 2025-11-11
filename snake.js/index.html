@@ -1,14 +1,33 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>🐍 Snake Multinivel</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="design.css" />
-
+  <style>
+    /* HUD fijo en pantalla */
+    #hud {
+      position: fixed;
+      top: 10px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      pointer-events: none;
+      font-weight: 600;
+      color: white;
+      z-index: 1000;
+    }
+    #score-ui {
+      margin-left: 10px;
+    }
+    #today-date {
+      margin-right: 10px;
+    }
+  </style>
 </head>
-<body class="level-1">
+<body>
 
   <!-- Pantalla de inicio -->
   <div id="start-screen" class="screen active">
@@ -24,12 +43,17 @@
     <button id="btnReset">Reiniciar progreso</button>
   </div>
 
+  <!-- HUD flotante fuera del canvas -->
+  <div id="hud">
+    <div id="score-ui">0</div>
+    <div id="today-date">—</div>
+  </div>
+
   <!-- Juego -->
   <div id="game-screen" class="screen">
     <div id="game-container">
-      <h2 id="levelTitle">Nivel 1</h2>
-      <canvas id="gameCanvas" width="400" height="400"></canvas>
-      <p>Puntaje: <span id="score">0</span></p>
+      <h2 id="levelTitle">Nivel</h2>
+      <canvas id="gameCanvas" width="800" height="500"></canvas>
       <button id="btnMenu">Volver al menú</button>
     </div>
   </div>

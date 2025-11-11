@@ -3,31 +3,66 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Examen</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>🐍 Snake Multinivel</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="design.css" />
+  <style>
+    /* HUD fijo en pantalla */
+    #hud {
+      position: fixed;
+      top: 10px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      pointer-events: none;
+      font-weight: 600;
+      color: white;
+      z-index: 1000;
+    }
+    #score-ui {
+      margin-left: 10px;
+    }
+    #today-date {
+      margin-right: 10px;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <aside class="sidebar">
-      <h2>Operaciones</h2>
-      <button id="fillBtn">Llenar Aleatorio</button>
-      <button id="clearBtn">Limpiar</button>
-      <button id="ejercicioUnoBtn">Ejercicio #1</button><!--DOCENTE-->
-      <button id="ejercicioDosBtn">Ejercicio #2</button>
-      <button id="ejercicioTresBtn">Ejercicio #3</button>
-       <button id="ejercicioCincoBtn">Ejercicio #5</button>
-       <button id="ejercicioSeisBtn">Ejercicio #6</button>
-      <button id="ejercicioCatorceBtn">Ejercicio #14</button>
-    </aside>
-    <main class="canvas-area">
-      <div class="canvas-wrapper">
-        <canvas id="matrixCanvas"></canvas>
-      </div>
-      <p id="resultadoTexto">Resultado: —</p> 
-    </main>
+
+  <!-- Pantalla de inicio -->
+  <div id="start-screen" class="screen active">
+    <h1>🐍 Snake Multinivel</h1>
+    <input id="playerName" type="text" placeholder="Ingresa tu nombre" />
+    <button id="btnStart">¡Vamos!</button>
   </div>
 
-  <script src="matrix.js"></script>
-  <script src="app.js"></script>
+  <!-- Menú de niveles -->
+  <div id="menu-screen" class="screen">
+    <h2>Selecciona un Nivel</h2>
+    <div id="levelsContainer" class="levels"></div>
+    <button id="btnReset">Reiniciar progreso</button>
+  </div>
+
+  <!-- HUD flotante fuera del canvas -->
+  <div id="hud">
+    <div id="score-ui">0</div>
+    <div id="today-date">—</div>
+  </div>
+
+  <!-- Juego -->
+  <div id="game-screen" class="screen">
+    <div id="game-container">
+      <h2 id="levelTitle">Nivel</h2>
+      <canvas id="gameCanvas" width="800" height="500"></canvas>
+      <button id="btnMenu">Volver al menú</button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="sounds.js"></script>
+  <script src="player.js"></script>
+  <script src="levels.js"></script>
+  <script src="game.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>

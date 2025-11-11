@@ -341,5 +341,23 @@ class Matrix {
                 this.data[i][j] = cond ? 1 : 0;
             }
     }
-}
 
+ /////JUEGO
+
+//Metodo rellenar la maytriz con nombre d eimagenes( array de strings)
+fillFromAssets(imageNames) {
+    let index = 0;
+    for (let i = 0; i < this.rows; i++) {
+        for (let j = 0; j < this.cols; j++) {
+            if (index < imageNames.length) {
+                // Extraer número del nombre de archivo (ej: "1.png" → 1)
+                const match = imageNames[index].match(/\d+/);
+                this.data[i][j] = match ? parseInt(match[0]) : imageNames[index];
+                index++;
+            } else {
+                this.data[i][j] = null; // si no hay más imágenes
+            }
+        }
+    }
+}
+}

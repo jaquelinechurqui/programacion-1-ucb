@@ -156,3 +156,44 @@ function clearCanvas() {
 // EJECUCIÓN FINAL
 // ----------------------------
 initializeCanvas();
+
+
+//JUEGO
+function drawMatrixWithImages(imageNames) {
+    const width = canvas.width = canvas.clientWidth;
+    const height = canvas.height = canvas.clientHeight;
+    const cellWidth = width / matrix.cols;
+    const cellHeight = height / matrix.rows;
+
+    context.clearRect(0, 0, width, height);
+
+    let index = 0;
+    for (let row = 0; row < matrix.rows; row++) {
+        for (let col = 0; col < matrix.cols; col++) {
+            const x = col * cellWidth;
+            const y = row * cellHeight;
+
+            if (index < imageNames.length) {
+                const img = new Image();
+                img.src = "assets/" + imageNames[index] + ".png"; // ruta a tu carpeta
+                img.onload = () => {
+                    context.drawImage(img, x, y, cellWidth, cellHeight);
+                };
+                index++;
+            }
+
+            context.strokeRect(x, y, cellWidth, cellHeight);
+        }
+    }
+}
+
+const fillImagenBtn = document.getElemenntById('fillImagesBtn');
+
+const imageNames = [
+  "1",  "2",  "3"
+];
+
+ fillImagesBtn.addEventListener('click', () =>{
+  matrix.fillFromAssets(imageNames);
+  drawMatrixWithImages(imageNames);
+ });

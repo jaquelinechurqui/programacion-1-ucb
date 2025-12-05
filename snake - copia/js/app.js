@@ -110,19 +110,15 @@ btnNivel3.addEventListener('click', () => {
 // Cargar imágenes y dibujar
 for (let i = 0; i < totalImages; i++) {
   const img = new Image();
-  // Se asume que el path es correcto
   img.src = `assets/${i}.png`; 
   img.onload = () => {
     loadedCount++;
     if (loadedCount === totalImages) {
-      
       const initialLevel = 1;
       const levelData = LEVELS[initialLevel];
-      
       // Crear Matrix
       const mapMatrix = new Matrix(levelData.length, levelData[0].length);
       mapMatrix.fillFromArray(levelData);
-
       // Inicializar Game
       game = new SnakeGame("gameCanvas", mapMatrix, images);
       // game.draw() es llamado dentro de game.loop()

@@ -8,7 +8,7 @@ class Player {
     // El cuerpo de la serpiente
     this.body = this.initBody();
     // La dirección de movimiento
-    this.direction = { dr: 1, dc: 1 }; // Inicialmente a la derecha
+    this.direction = { dr: 0, dc: 0 }; // Inicialmente a la derecha
   }
 
   initBody() {

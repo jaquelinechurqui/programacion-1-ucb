@@ -58,10 +58,14 @@ class SnakeGame {
 
   // initSnake() se mueve a Player, renombramos para reinicio
   reiniciarPlayer() {
-      // Recreamos la instancia del Player para resetear su cuerpo y dirección
-      this.player = new Player(this.playableRowStart, this.playableColStart, this.playableRows, this.playableCols);
-      this.teclaPresionada = (this.nivelActual !== 1);
-  }
+  this.player = new Player(this.playableRowStart, this.playableColStart, this.playableRows, this.playableCols);
+  this.teclaPresionada = (this.nivelActual !== 1);
+
+  //  OBLIGATORIO PARA EVITAR SALTOS LOCOS
+  this.player.direction = { dr: 0, dc: 0 };
+}
+
+  
 
   initControls() {
     document.addEventListener("keydown", (e) => {
@@ -87,7 +91,7 @@ class SnakeGame {
           // Usamos el método de Player para gestionar la dirección
           if (this.player.setDirection(newDirection)) {
              this.teclaPresionada = true;
-             // new Audio("assets/sounds/move.mp3").play(); // Descomentar si usas sonido
+             new Audio("assets/sounds/button.mp3").play(); // Descomentar si usas sonido
           }
       }
     });
@@ -112,23 +116,27 @@ class SnakeGame {
     this.applesEatenInLevel = 0; 
 
     switch (this.nivelActual) {
-      case 1:
-        // Solo Rojas
-        break;
-      case 2:
-        this.doradasRestantes = 2; // Dos doradas disponibles
-        break;
-      case 3:
-        this.multicolorRestantes = 3; // Tres multicolor disponibles
-        break;
-    }
+    case 1:
+      this.manzanasRequeridas = 5;
+      break;
+
+    case 2:
+      this.manzanasRequeridas = 10;
+      this.doradasRestantes = 2;
+      break;
+
+    case 3:
+      this.manzanasRequeridas = 15;
+      this.multicolorRestantes = 3;
+      break;
+  }
   }
 
   
   ajustarVelocidad() {
     if (this.nivelActual === 1) this.velocidad = 1500; 
-    if (this.nivelActual === 2) this.velocidad = 500; 
-    if (this.nivelActual === 3) this.velocidad = 300; 
+    if (this.nivelActual === 2) this.velocidad = 1200; 
+    if (this.nivelActual === 3) this.velocidad = 900; 
 }
 
   esObstaculo(valor) {
@@ -171,11 +179,9 @@ class SnakeGame {
 
   
 handleMove() {
-  // Obtenemos la nueva posición potencial de la cabeza desde el Player
   const newHead = this.player.calculateNewHead();
 
   // --- 1. Verificar colisiones ---
-  // Verificar límites
   if (
     newHead.row < this.playableRowStart ||
     newHead.row >= this.playableRowStart + this.playableRows ||
@@ -186,67 +192,64 @@ handleMove() {
     return;
   }
 
-  // Verificar obstáculo o cuerpo
-  // IMPORTANTE: Para la auto-colisión, excluimos el último segmento del cuerpo
-  // si aún no se ha movido (ya que ese segmento desaparecería si no come).
-  const isSelfCollision = this.player.body.slice(0, -1).some((part) => part.row === newHead.row && part.col === newHead.col);
-  
+  const isSelfCollision = this.player.body
+    .slice(0, -1)
+    .some((part) => part.row === newHead.row && part.col === newHead.col);
+
   if (
     this.esObstaculo(this.mapMatrix.getValue(newHead.row, newHead.col)) ||
     isSelfCollision
   ) {
-    this.endGame("¡Chocaste contra un obstáculo o contra ti mismo!");
+    this.endGame("¡Nooo, chocaste!");
     return;
   }
 
   // --- 2. Comer manzana ---
   if (newHead.row === this.apple.row && newHead.col === this.apple.col) {
-    // El Player crece (añade newHead)
-    this.player.grow(newHead);
     
+    this.player.grow(newHead);
+
     const puntos = this.puntosPorManzana(this.apple.tipo);
     this.score += puntos;
-    this.applesEatenInLevel++; // Incrementa el contador de manzanas comidas
+    this.applesEatenInLevel+=Math.floor(puntos/10);
 
-    // new Audio("assets/sounds/eat.mp3").play(); 
+    new Audio("assets/sounds/eat.mp3").play();
+
+    this.draw();
 
     const objetivoScore = this.maxScorePorNivel[this.nivelActual - 1];
 
-    // Verificar condición de fin de nivel: Puntuación Mínima Y Manzanas Requeridas
+    // --- ¿Completó el nivel? ---
     if (this.score >= objetivoScore && this.applesEatenInLevel >= this.manzanasRequeridas) {
-        
-        // Pausar y mostrar el alert antes de cambiar de nivel
-        this.isPaused = true;
-        this.draw(); 
-        alert(`¡Nivel ${this.nivelActual} completado! Puntuación: ${this.score}. Pasas al siguiente nivel.`);
 
-        this.isPaused = false; // Continua el juego después del alert
-        
+      this.isPaused = true;
+
+      setTimeout(() => {
+        alert(`¡Nivel ${this.nivelActual} completado! Puntuación: ${this.score}.`);
+        this.isPaused = false;
+
         if (this.nivelActual < 3) {
-            // Desbloquear el siguiente nivel
-            if (typeof unlockNextLevelButton === 'function') {
-                 unlockNextLevelButton(this.nivelActual + 1);
-            }
+          unlockNextLevelButton(this.nivelActual + 1);
+          this.cambiarNivel(this.nivelActual + 1);
         } else {
-            alert("¡Juego completado!");
-            this.endGame("Has ganado el juego.");
-            return;
+          alert("¡Juego completado!");
+          this.endGame("Has ganado el juego.");
         }
-        
-        // Si no es Game Over y hay siguiente nivel, lo reiniciamos
-        this.cambiarNivel(this.nivelActual + 1);
-        
+      }, 100);
+
     } else {
-      // Si no terminó el nivel, generar nueva manzana
+      // No completó nivel → generar nueva manzana
       this.apple = this.spawnApple();
     }
+
   } else {
-    // La víbora se mueve sin crecer (añade newHead y quita la cola)
+    // No comió → movimiento normal
     this.player.move(newHead);
   }
-  
-  this.updateUI(); // Sincroniza la UI (botones)
+
+  this.updateUI();
 }
+
 
 // Función para terminar el juego (Game Over)
 endGame(message = "¡Game Over!") {
@@ -255,12 +258,17 @@ endGame(message = "¡Game Over!") {
     if (this.gameLoopTimeout) {
         clearTimeout(this.gameLoopTimeout);
     }
-    this.draw(); 
-    // new Audio("assets/sounds/death.mp3").play(); 
-    alert(`${message} Tu puntuación final: ${this.score}`);
-    
-    // Alerta ha terminado, pero el juego se queda en estado Game Over
-    this.updateUI();
+    const deathSound = new Audio("assets/sounds/death.mp3");
+    deathSound.play().catch(() => {
+    });
+    this.draw();
+
+    // Dejamos un pequeño delay para que el audio arranque antes del alert
+    setTimeout(() => {
+      alert(`${message} Tu puntuación final: ${this.score}`);
+      // Al volver del alert, el juego ya está en estado Game Over
+      this.updateUI();
+    }, 150);
 }
 
 // Función para cambiar de nivel (puede ser llamado por el loop o por un botón)
